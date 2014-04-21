@@ -1,0 +1,27 @@
+{
+  "name": "puntinPunchout",
+  "version": "0.0.0",
+  "authors": [
+    "michael yabko <myabko@gmail.com>",
+    "stephen frerotte <sfrerrot@gmail.com>"
+  ],
+  "description": "TOJam9 Boxing Game",
+  "keywords": [
+    "boxing",
+    "game",
+    "crafty",
+    "craftyjs"
+  ],
+  "license": "MIT",
+  "ignore": [
+    "**/.*",
+    "node_modules",
+    "bower_components",
+    "test",
+    "tests"
+  ],
+  "dependencies": {
+    "crafty": "0.6.2",
+    "QUnit": "1.11.0"
+  }
+}
