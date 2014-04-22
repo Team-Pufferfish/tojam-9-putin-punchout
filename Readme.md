@@ -9,3 +9,8 @@ Install with bower using
 ```
 bower install
 ```
+
+To install the framework required for testing
+```
+npm install
+```
