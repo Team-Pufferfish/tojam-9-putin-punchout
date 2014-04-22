@@ -8,4 +8,10 @@ Crafty.scene('test', function(){
             LeftControl: 'A',
             RightControl: 'D'
         });
+
+    element.bind("testID.ButtonChange",function(change){
+        if (change.newControls === element.BOTH_BUTTONS){
+            console.log("you pushed both buttons!");
+        }
+    })
 });

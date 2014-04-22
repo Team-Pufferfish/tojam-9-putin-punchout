@@ -87,5 +87,7 @@ Crafty.c('LRController',{
                 component.attr("controls",new_controls);
             });
         }
+
+        return component;
     }
 });

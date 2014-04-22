@@ -2,8 +2,8 @@
  * Created by myabko on 2014-04-21.
  */
 gameSettings = {
-    width: 800,
-    height: 600
+    width: 300,
+    height: 100
 };
 
 
