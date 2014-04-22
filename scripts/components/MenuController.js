@@ -43,7 +43,7 @@ Crafty.c('MenuController',{
                         if (component.queuedEvent === component.MENU_LEFT_ACTION){
                             component.trigger(triggeredEventName,component.MENU_LEFT_ACTION);
                         }
-                    },200);
+                    },140);
 
                 } else if (controls.newButtons === this.RIGHT_BUTTON){
                     component.attr('queuedEvent',component.MENU_RIGHT_ACTION);
@@ -51,7 +51,7 @@ Crafty.c('MenuController',{
                         if (component.queuedEvent === component.MENU_RIGHT_ACTION){
                             component.trigger(triggeredEventName,component.MENU_RIGHT_ACTION);
                         }
-                    },200);
+                    },140);
                 }
             }
 

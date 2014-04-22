@@ -9,6 +9,7 @@ Crafty.scene('test', function(){
             RightControl: 'D'
         });
 
+
     element.bind("testID.MenuButtonChange",function(change){
         if (change === this.MENU_SELECTION){
             console.log('you selected this option');
