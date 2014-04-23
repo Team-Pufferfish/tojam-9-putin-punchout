@@ -30,13 +30,11 @@ Crafty.scene('test', function(){
             }
         });
 
-    element.bind("testID.ButtonChange",function(change) {
-        if (change.newControls === element.BOTH_BUTTONS) {
-            console.log("you pushed both buttons!");
-        } else if (change.newControls === element.LEFT_BUTTON && lefty.punch_out != 1) {
+    element.bind("testID.ButtonComplete",function(change) {
+        if (change.button === element.LEFT_BUTTON && lefty.punch_out != 1) {
             lefty.punch_out = 1;
             lefty.tween({tweenName:"leftPunch",rotation:25,x: 320, y: 50}, 200);
-        } else if (change.newControls === element.RIGHT_BUTTON && righty.punch_out != 1) {
+        } else if (change.button === element.RIGHT_BUTTON && righty.punch_out != 1) {
             righty.punch_out = 1;
             righty.tween({tweenName:"rightPunch",rotation:-25,x: 220, y: 100}, 200);
         }
