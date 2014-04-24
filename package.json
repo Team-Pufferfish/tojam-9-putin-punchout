@@ -21,7 +21,6 @@
   "homepage": "https://github.com/yabbi/PutinPunchout",
   "dependencies": {
     "karma": "^0.12.9",
-    "qunitjs": "^1.12.0",
     "karma-qunit": "^0.1.1",
     "karma-cli": "^0.0.4"
   },
