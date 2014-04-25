@@ -23,14 +23,14 @@ Crafty.c("Defense",{
         Crafty.trigger("block.start");
         //defender.cancelTween();
         component.tween({tweenName:"blockAction",rotation:0,x: 0, y: 50}, time);
-        //defender.animate("BlockAnimation");
+        component.animate('PunchAnimating',18);
     },
     GoNeutral: function (playerID, time){
         var component = this;
         Crafty.trigger("block.release");
         Crafty.trigger("dodge.release");
         //defender.cancelTween();
-        //defender.animate("Neutral",-1);
+        //component.animate("PunchAnimating",-1);
         component.tween({tweenName:"noAction",rotation:0,x: 0, y: 0}, time);
     },
     setNeutralAnimation : function(animtionReel){

@@ -49,7 +49,7 @@ Crafty.c('LRController',{
                 newButtons: new_controls.convertToButton()
             });
 
-            console.log("old: "+component.controls.convertToButton() + " new:"+ new_controls.convertToButton())
+            //console.log("old: "+component.controls.convertToButton() + " new:"+ new_controls.convertToButton())
 
         }
 

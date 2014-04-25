@@ -16,10 +16,16 @@ Crafty.scene('test', function(){
             RightControl: 'L'
         });
 
-    var bodysprite = Crafty.e("2D, Canvas, Image, Tween, Defense").attr({rotation:0,x: 0, y: 0, width: 300, height: 500}).origin("center").image("vladimir_test002");
+    //Graphics
+    Crafty.sprite(800,600,"vladimir_test002", {putinbody:[0,0]});
+    Crafty.sprite(239,436,"punch_test001.png", {fist1:[0,0]});
+    //animations
+    Crafty.sprite(552,600, "putin_testanimation.png", {PunchAnimate: [0,0]});
+
+    var bodysprite = Crafty.e("Graphics, Defense,SpriteAnimation,PunchAnimate").attr({rotation:0,x: 0, y: 0, width: 300, height: 500}).reel('PunchAnimating',18, 0, 0, 2)
     bodysprite.setCallbacks();
 
-    var lefty = Crafty.e('2D, Canvas, Color,Image, Tween').attr({punch_out:0,rotation:0,x:gameSettings.width/2-350, y: gameSettings.height - 150, w: 150, h: 300}).image("punch_test001.png")
+    var lefty = Crafty.e('Graphics, fist1').attr({punch_out:0,rotation:0,x:gameSettings.width/2-350, y: gameSettings.height - 150}).flip("X")
         .bind("TweenEnd", function(props){
             console.log("lefty complete" + props.tweenName);
             if (props.tweenName === "leftPunch") {
@@ -28,7 +34,7 @@ Crafty.scene('test', function(){
                 this.punch_out = 0;
             }
         }).origin("center");
-    var righty = Crafty.e('2D, Canvas, Color, Image, Tween').attr({punch_out:0,rotation:0,x: gameSettings.width/2+100, y: gameSettings.height - 150, w: 150, h: 300}).image("punch_test001.png")
+    var righty = Crafty.e('Graphics, fist1').attr({punch_out:0,rotation:0,x: gameSettings.width/2+100, y: gameSettings.height - 150})
         .bind("TweenEnd", function(props) {
             console.log("righty complete" + props.tweenName);
             if (props.tweenName === "rightPunch") {
@@ -41,10 +47,16 @@ Crafty.scene('test', function(){
     attackerControler.bind("attacko.ButtonComplete",function(change) {
         if (change.button === attackerControler.LEFT_BUTTON && lefty.punch_out != 1) {
             lefty.punch_out = 1;
-            lefty.tween({tweenName:"leftPunch",rotation:25,x: gameSettings.width/2-50, y: 50}, 200);
+            if (attackerControler.timeHeld <= 1000) {
+                console.log("jab:" + attackerControler.timeHeld );
+                lefty.tween({tweenName: "leftPunch", rotation: 25, x: gameSettings.width / 2 - 50, y: 50}, 200);
+            }else{
+                console.log("hook:" +  attackerControler.timeHeld);
+                lefty.tween({tweenName: "leftPunch", rotation: 45, x: gameSettings.width / 2 + 200, y: 50}, 200);
+            }
         } else if (change.button === attackerControler.RIGHT_BUTTON && righty.punch_out != 1) {
             righty.punch_out = 1;
-            righty.tween({tweenName:"rightPunch",rotation:-25,x: gameSettings.width/2-50, y: 50}, 200);
+            righty.tween({tweenName:"rightPunch",rotation:-25,x: gameSettings.width/2-100, y: 50}, 200);
         }
     });
 
@@ -68,5 +80,8 @@ Crafty.scene('test', function(){
             console.log("Is this real life?!");
         }
     });
+
+// setup animation
+        //
 
 });
