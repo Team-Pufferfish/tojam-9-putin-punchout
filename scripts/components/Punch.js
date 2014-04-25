@@ -22,8 +22,8 @@ Crafty.c("Punch",{
 
         var component = this;
 
-        Throw();
-
+        if (component.punch_out === 0)
+            Throw();
 
         function Throw(){
 
@@ -64,21 +64,28 @@ Crafty.c("Punch",{
             });
 
             if (component.ShouldAnimate){
-                animate();
+                animate(component);
                 console.log("starting animate");
-            } else {
+            } else {//tests only
                 console.log("triggering punch.ending");
                 component.trigger("punch.ending");
             }
-
-
-
-
-
         }
 
-        function animate(){
-
+        function animate(component){
+            component.punch_out = 1;
+            if (hand === component.LEFT_PUNCH)
+                if (punchType === component.STRAIGHT)
+                    component.tween({tweenName: "leftPunch", rotation: 25, x: gameSettings.width / 2 - 50, y: 50}, 200);
+                else
+                    component.tween({tweenName: "leftPunch", rotation: 45, x: gameSettings.width / 2 + 50, y: 50}, 200);
+            else if (hand === component.RIGHT_PUNCH) {
+                if (punchType === component.STRAIGHT) {
+                    component.tween({tweenName: "rightPunch", rotation: -25, x: gameSettings.width / 2 - 150, y: 50}, 200);
+                }else {
+                    component.tween({tweenName: "rightPunch", rotation: -45, x: gameSettings.width / 2 - 250, y: 50}, 200);
+                }
+            }
         }
     }
 

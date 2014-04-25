@@ -18,11 +18,14 @@ Crafty.scene('test', function(){
 
     //Graphics
     Crafty.sprite(800,600,"vladimir_test002", {putinbody:[0,0]});
-    Crafty.sprite(239,436,"punch_test001.png", {fist1:[0,0]});
+    Crafty.sprite(240,436,"punch_test001.png", {fist1:[0,0]});
     //animations
-    Crafty.sprite(552,600, "putin_testanimation.png", {PunchAnimate: [0,0]});
+    Crafty.sprite(500,540, "putin_testanimation.png", {PunchAnimate: [0,0]});
 
-    var bodysprite = Crafty.e("Graphics, Defense,SpriteAnimation,PunchAnimate").attr({rotation:0,x: 0, y: 0, width: 300, height: 500}).reel('PunchAnimating',18, 0, 0, 2)
+    Crafty.e("Graphics").image("background_test.png");
+
+    var bodysprite = Crafty.e("Graphics,Zonable, Defense,SpriteAnimation,PunchAnimate").attr({rotation:0,x: gameSettings.width/2 - 500/2, y:60})
+        .reel('PunchAnimating',18, 0, 0, 2);
     bodysprite.setCallbacks();
 
     var lefty = Crafty.e('Graphics, fist1').attr({punch_out:0,rotation:0,x:gameSettings.width/2-350, y: gameSettings.height - 150}).flip("X")
@@ -47,16 +50,21 @@ Crafty.scene('test', function(){
     attackerControler.bind("attacko.ButtonComplete",function(change) {
         if (change.button === attackerControler.LEFT_BUTTON && lefty.punch_out != 1) {
             lefty.punch_out = 1;
-            if (attackerControler.timeHeld <= 1000) {
-                console.log("jab:" + attackerControler.timeHeld );
+            if (change.timeHeld <= 500) {
+                console.log("jab:" + change.timeHeld );
                 lefty.tween({tweenName: "leftPunch", rotation: 25, x: gameSettings.width / 2 - 50, y: 50}, 200);
             }else{
-                console.log("hook:" +  attackerControler.timeHeld);
-                lefty.tween({tweenName: "leftPunch", rotation: 45, x: gameSettings.width / 2 + 200, y: 50}, 200);
+                console.log("hook:" +  change.timeHeld);
+                lefty.tween({tweenName: "leftPunch", rotation: 45, x: gameSettings.width / 2 + 50, y: 50}, 200);
             }
         } else if (change.button === attackerControler.RIGHT_BUTTON && righty.punch_out != 1) {
             righty.punch_out = 1;
-            righty.tween({tweenName:"rightPunch",rotation:-25,x: gameSettings.width/2-100, y: 50}, 200);
+            if (change.timeHeld <= 500) {
+                righty.tween({tweenName:"rightPunch",rotation:-25,x: gameSettings.width/2-150, y: 50}, 200);
+            }else{
+                console.log("hook:" +  change.timeHeld);
+                righty.tween({tweenName: "rightPunch", rotation: -45, x: gameSettings.width / 2 - 250, y: 50}, 200);
+            }
         }
     });
 
@@ -81,7 +89,6 @@ Crafty.scene('test', function(){
         }
     });
 
-// setup animation
-        //
+    Crafty.e("Graphics").image("gui_layout_test.png");
 
 });

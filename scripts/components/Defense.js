@@ -9,10 +9,10 @@ Crafty.c("Defense",{
         Crafty.trigger("dodge.start", {"direction": direction})
         //defender.cancelTween();
         if (direction === "left"){
-            component.tween({tweenName:"dodgeLeft",rotation:0,x: -150, y: 0}, time);
+            component.tween({tweenName:"dodgeLeft",rotation:0,x: gameSettings.width/2 - 462/2-150, y:60}, time);
             //defender.animate("DodgeLeft");
         }else if (direction === "right"){
-            component.tween({tweenName:"dodgeRight",rotation:0,x: +150, y: 0}, time);
+            component.tween({tweenName:"dodgeRight",rotation:0,x: gameSettings.width/2 - 462/2+150, y:60}, time);
             //defender.animate("DodgeRight");
         }else{
             console.log("dodged in a direction not governed by reality");
@@ -22,7 +22,7 @@ Crafty.c("Defense",{
         var component = this;
         Crafty.trigger("block.start");
         //defender.cancelTween();
-        component.tween({tweenName:"blockAction",rotation:0,x: 0, y: 50}, time);
+        component.tween({tweenName:"blockAction",rotation:0,x: gameSettings.width/2 - 500/2, y:110}, time);
         component.animate('PunchAnimating',18);
     },
     GoNeutral: function (playerID, time){
@@ -31,7 +31,7 @@ Crafty.c("Defense",{
         Crafty.trigger("dodge.release");
         //defender.cancelTween();
         //component.animate("PunchAnimating",-1);
-        component.tween({tweenName:"noAction",rotation:0,x: 0, y: 0}, time);
+        component.tween({tweenName:"noAction",rotation:0,x: gameSettings.width/2 - 500/2, y:60}, time);
     },
     setNeutralAnimation : function(animtionReel){
     },
