@@ -18,5 +18,5 @@ window.addEventListener('load', function(){
     Crafty.background('green');
 
     // Simply start the "Loading" scene to get things going
-    Crafty.scene('test');
+    Crafty.scene('testingEvents');
 });
