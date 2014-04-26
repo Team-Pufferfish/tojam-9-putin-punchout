@@ -10,12 +10,12 @@ Crafty.c("Defense",{
         if (direction === "left"){
             component.setZone(playerID,-50);
             component.tween({tweenName:"dodgeLeft",rotation:0,x: gameSettings.width/2 - 462/2-150, y:80}, time);
-            component.animate("DodgeAnimate", 1);
+            component.animate("DodgeLeftAnimate", 1);
         }else if (direction === "right"){
 
             component.setZone(playerID,50);
             component.tween({tweenName:"dodgeRight",rotation:0,x: gameSettings.width/2 - 462/2+150, y:80}, time);
-            component.animate("DodgeAnimate", 1);
+            component.animate("DodgeRightAnimate", 1);
         }else{
             console.log("dodged in a direction not governed by reality");
         }
@@ -95,6 +95,12 @@ Crafty.c("Defense",{
                     break;
             }
         });
+        /*component.bind("punch.end", function(props){
+                if (props.result === component.PUNCH_HIT){
+                    component.tint("#F00", 0.5);
+                }
+            }
+        );*/
     }
 
 });
