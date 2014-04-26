@@ -74,8 +74,10 @@ Crafty.c("Attributes",{
     pauseAutoIncrementor: function(ID,attributeName){
         var incrementor = _.find(this.autoIncrementors,function(inc){return inc.ID === ID && inc.attributeName === attributeName});
 
-        if (incrementor !== undefined)
+        if (incrementor !== undefined){
             incrementor.pause = true;
+        }
+
     }
 
 
