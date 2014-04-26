@@ -15,17 +15,14 @@ Crafty.c("Punch",{
     PUNCH_BLOCK: 2,
     setPunchAnimation: function(shouldAnimate){
         this.ShouldAnimate = shouldAnimate;
-        console.log("should animate: "+shouldAnimate);
         return this;
     },
     setCallbacks: function() {
         var component = this;
         //on end animation call this
         component.bind("punch.ending",function(e){
-            console.log("punch is ending");
             var attackerZone = e.punchType * e.hand;
             var defenderZone = component.getZone(e.defenderID);
-            console.log("punch.ending");
             var hitPercent = component.detectHit(attackerZone,defenderZone);
             var result = hitPercent === 0 ? component.PUNCH_MISS : component.PUNCH_HIT;
 
@@ -40,7 +37,6 @@ Crafty.c("Punch",{
         });
 
         component.bind("TweenEnd", function(props) {
-            console.log("punch tween completed: " + props.tweenName);
             if (props.tweenName === "rightPunch") {
                 component.trigger("punch.ending",props.triggerData);
                 this.punch_out = 1;
@@ -80,9 +76,7 @@ Crafty.c("Punch",{
 
             if (component.ShouldAnimate){
                 animate(component);
-                console.log("starting animate");
             } else {//tests only
-                console.log("triggering punch.ending");
 
                 component.trigger("punch.ending", triggerData);
             }

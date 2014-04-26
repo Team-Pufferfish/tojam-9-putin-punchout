@@ -5,6 +5,7 @@
 Crafty.scene('newTesting',function(){
     var player1 = Crafty.e("Player").setup({
         ID: "Player1",
+        opponentID: "Player2",
         LeftControl: 'A',
         RightControl: 'D',
         BodySpriteName: 'PutinSprite',
@@ -12,8 +13,11 @@ Crafty.scene('newTesting',function(){
         role: 1 //0 is attack
     });
 
+
+
     var player2 = Crafty.e("Player").setup({
         ID: "Player2",
+        opponentID: "Player1",
         LeftControl: 'J',
         RightControl: 'L',
         BodySpriteName: 'HarperSprite',

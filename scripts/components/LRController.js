@@ -105,7 +105,6 @@ Crafty.c('LRController',{
                             button: component.LEFT_BUTTON,
                             timeHeld: triggerTime - old_controls.leftTimer
                         });
-                        console.log('left' + (triggerTime - old_controls.leftTimer));
 
                         new_controls.leftTimer = null;
 
@@ -121,7 +120,6 @@ Crafty.c('LRController',{
                             button: component.RIGHT_BUTTON,
                             timeHeld: triggerTime - old_controls.rightTimer
                         });
-                        console.log('right' + (triggerTime - old_controls.rightTimer));
 
                         new_controls.rightTimer = null;
 

@@ -70,26 +70,21 @@ Crafty.c("Defense",{
     setCallbacks: function(){
         var component = this;
         component.bind("TweenEnd", function(props) {
-            console.log("A Tween ended" + props);
             switch (props.tweenName){
                 case "dodgeLeft":
-                    console.log("dodged left!");
                     Crafty.trigger("dodge.end");
                     component.setZone(component.playerID,-100);
                     break;
                 case "dodgeRight":
-                    console.log("dodge right!");
                     Crafty.trigger("dodge.end");
                     component.setZone(component.playerID,100);
                     break;
                 case "noAction":
-                    console.log("standing around like an idiot");
                     Crafty.trigger("block.release");
                     Crafty.trigger("dodge.release");
                     component.setZone(component.playerID,0);
                     break;
                 case "blockAction":
-                    console.log("block ready!");
                     Crafty.trigger("block.end");
                     component.setZone(component.playerID,0);
                     break;
