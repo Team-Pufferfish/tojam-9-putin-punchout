@@ -20,6 +20,9 @@ test("should be a partial hit when in the same zone, but hit is off",function(){
     equal(entity.detectHit(25,100),0.25);
     equal(entity.detectHit(-25,-100), 0.25);
     equal(entity.detectHit(-50,-100),0.50);
+    equal(entity.detectHit(-50,-100),0.50);
+    equal(entity.detectHit(-25,0),0.75);
+    equal(entity.detectHit(25,0),0.75);
 
 });
 
