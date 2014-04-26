@@ -3,31 +3,54 @@
  */
 
 Crafty.scene('newTesting',function(){
+    //temp controller to show britt stuf
+    var gameController = Crafty.e('LRController')
+        .assignControls({
+            ID: 'gamecontrol',
+            LeftControl: '1',
+            RightControl: '2'
+        });
+
+
+    //Background Layer
+    Crafty.e("Graphics").image("background_test.png");
+
+    //Initialize Players
     var player1 = Crafty.e("Player").setup({
         ID: "Player1",
         opponentID: "Player2",
         LeftControl: 'A',
         RightControl: 'D',
-        BodySpriteName: 'PutinSprite',
-        GloveSpriteName: 'PutinFist',
+        BodySpriteName: 'PutinBody',
+        GloveSpriteName: 'HarperFist',
         role: 1 //0 is attack
     });
-
-
 
     var player2 = Crafty.e("Player").setup({
         ID: "Player2",
         opponentID: "Player1",
         LeftControl: 'J',
         RightControl: 'L',
-        BodySpriteName: 'HarperSprite',
+        BodySpriteName: 'PutinBody',
         GloveSpriteName: 'HarperFist',
         role: 0 //0 is attack
     });
 
+    gameController.bind("gamecontrol.ButtonComplete",function(change) {
+        if (change.button === gameController.LEFT_BUTTON) {
+            console.log("Swap players");
+            //SwapPlayers("left", 1000, bodysprite, lefty, righty, body2sprite, lefty2, righty2);
+        }else if (change.button === gameController.RIGHT_BUTTON){
+            console.log("Swap players");
+            //SwapPlayers("right", 1000, bodysprite, lefty, righty, body2sprite, lefty2, righty2);
+        }
+    });
 
-
-
+    //Draw UI
+    Crafty.e("Graphics").image("gui_layout_test.png");
+    Crafty.e("2D, DOM, Text").attr({ x: gameSettings.width/2-(41), y: 8 }).text('00:00')
+        .textColor('#FFFFFF', 1.0)
+        .textFont({ size: '32px', family:"Arial", weight: 'bold' });
 });
 
 Crafty.scene('test', function(){
@@ -52,8 +75,6 @@ Crafty.scene('test', function(){
             LeftControl: '1',
             RightControl: '2'
         });
-
-
 
     //Background Layer
     Crafty.e("Graphics").image("background_test.png");
