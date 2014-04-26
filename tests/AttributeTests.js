@@ -69,6 +69,24 @@ test("should throw error when you try to retrieve a value with an improper ID",f
     },"attribute does not exist: Two.attr");
 });
 
+test("should change an attributes value if you add to it",function(){
+   var attribute = Crafty.e("Attributes");
 
+    attribute.assignAttribute("Changer","attr",1);
+    attribute.changeAttribute("Changer","attr",10);
+
+    equal(attribute.getAttribute("Changer","attr"),11);
+
+});
+
+test("should change an attributes value if you add a negative to it",function(){
+    var attribute = Crafty.e("Attributes");
+
+    attribute.assignAttribute("Changer","attr",1);
+    attribute.changeAttribute("Changer","attr",-10);
+
+    equal(attribute.getAttribute("Changer","attr"),-9);
+
+});
 
 
