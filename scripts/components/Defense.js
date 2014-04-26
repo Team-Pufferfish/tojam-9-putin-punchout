@@ -7,7 +7,8 @@ Crafty.c("Defense",{
 
         console.log("dodged " + direction + " for " + time )
         Crafty.trigger("dodge.start", {"direction": direction})
-        //defender.cancelTween();
+        component.pauseAnimation();
+        component.reelPosition(0);
         if (direction === "left"){
             component.tween({tweenName:"dodgeLeft",rotation:0,x: gameSettings.width/2 - 462/2-150, y:60}, time);
             //defender.animate("DodgeLeft");
@@ -23,17 +24,30 @@ Crafty.c("Defense",{
         Crafty.trigger("block.start");
         //defender.cancelTween();
         component.tween({tweenName:"blockAction",rotation:0,x: gameSettings.width/2 - 500/2, y:110}, time);
-        component.animate('PunchAnimating',18);
+        component.pauseAnimation();
+        component.reelPosition(0);
+        if (!component.isPlaying("PutinBlockAnimate")) {
+            component.animate("PutinBlockAnimate", 1);
+        }
+        //component.animate("PutinBlockAnimate",1);
     },
-    GoNeutral: function (playerID, time){
+    GoNeutral: function (playerID, time) {
         var component = this;
         Crafty.trigger("block.release");
         Crafty.trigger("dodge.release");
         //defender.cancelTween();
-        //component.animate("PunchAnimating",-1);
+        if (component.isPlaying("PutinBlockAnimate"))
+            component.animate("PutinUnblockAnimate", 1);
+        else{
+            if (!component.isPlaying("PutinUnblockAnimate") && !component.isPlaying("PutinIdleAnimate")) {
+                component.animate("PutinIdleAnimate", -1);
+            }else {
+                component.resumeAnimation()
+            }
+        }
         component.tween({tweenName:"noAction",rotation:0,x: gameSettings.width/2 - 500/2, y:60}, time);
     },
-    setNeutralAnimation : function(animtionReel){
+    setNeutralAnimation : function(animationReel){
     },
     setBlockAnimation: function(animationReel) {
     },

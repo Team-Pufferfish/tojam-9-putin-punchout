@@ -18,6 +18,52 @@ Crafty.c("Punch",{
         console.log("should animate: "+shouldAnimate);
         return this;
     },
+    setCallbacks: function() {
+        var component = this;
+        //on end animation call this
+        component.bind("punch.ending",function(){
+            console.log("punch is ending");
+            var attackerZone = punchType * hand;
+            var defenderZone = component.getZone(defenderID);
+            console.log("punch.ending");
+            component.detectHit(attackerZone,defenderZone);
+
+        });
+        component.bind("hit.landed",function(e){
+            console.log("punch hit");
+            component.trigger("punch.end",{
+                punchType: punchType,
+                hand:hand,
+                damage: e * strength,
+                result: component.PUNCH_HIT
+            });
+        });
+
+        component.bind("hit.missed",function(){
+            console.log("punch missed");
+            component.trigger("punch.end",{
+                punchType: punchType,
+                hand:hand,
+                damage: 0,
+                result: component.PUNCH_MISS
+            });
+        });
+
+        component.bind("TweenEnd", function(props) {
+            console.log("punch tween completed: " + props.tweenName);
+            if (props.tweenName === "rightPunch") {
+                //component.trigger("punch.ending");
+                this.tween({tweenName:"rightReturn",rotation: 0, x: gameSettings.width/2+100, y: gameSettings.height - 150}, 200);
+            }else if (props.tweenName === "rightReturn"){
+                this.punch_out = 0;
+            }else if (props.tweenName === "leftPunch") {
+                //component.trigger("punch.ending");
+                this.tween({tweenName:"leftReturn",rotation: 0, x: gameSettings.width/2-350, y: gameSettings.height - 150}, 200);
+            }else if (props.tweenName === "leftReturn"){
+                this.punch_out = 0;
+            }
+        });
+    },
     ThrowPunch: function(playerID, defenderID,punchType,hand,zone,strength){
 
         var component = this;
@@ -31,36 +77,6 @@ Crafty.c("Punch",{
                 type: punchType,
                 hand: hand,
                 strength: strength
-            });
-
-
-//on end animation call this
-            component.bind("punch.ending",function(){
-                console.log("punch is ending");
-                var attackerZone = punchType * hand;
-                var defenderZone = component.getZone(defenderID);
-                console.log("punch.ending");
-                component.detectHit(attackerZone,defenderZone);
-
-            });
-            component.bind("hit.landed",function(e){
-                console.log("punch hit");
-                component.trigger("punch.end",{
-                    punchType: punchType,
-                    hand:hand,
-                    damage: e * strength,
-                    result: component.PUNCH_HIT
-                });
-            });
-
-            component.bind("hit.missed",function(){
-                console.log("punch missed");
-                component.trigger("punch.end",{
-                    punchType: punchType,
-                    hand:hand,
-                    damage: 0,
-                    result: component.PUNCH_MISS
-                });
             });
 
             if (component.ShouldAnimate){
@@ -88,7 +104,4 @@ Crafty.c("Punch",{
             }
         }
     }
-
-
-
 });
