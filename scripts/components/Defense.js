@@ -10,11 +10,11 @@ Crafty.c("Defense",{
         component.pauseAnimation();
         component.reelPosition(0);
         if (direction === "left"){
-            component.tween({tweenName:"dodgeLeft",rotation:0,x: gameSettings.width/2 - 462/2-150, y:60}, time);
-            //defender.animate("DodgeLeft");
+            component.tween({tweenName:"dodgeLeft",rotation:0,x: gameSettings.width/2 - 462/2-150, y:80}, time);
+            component.animate("PutinDodge", 1);
         }else if (direction === "right"){
-            component.tween({tweenName:"dodgeRight",rotation:0,x: gameSettings.width/2 - 462/2+150, y:60}, time);
-            //defender.animate("DodgeRight");
+            component.tween({tweenName:"dodgeRight",rotation:0,x: gameSettings.width/2 - 462/2+150, y:80}, time);
+            component.animate("PutinDodge", 1);
         }else{
             console.log("dodged in a direction not governed by reality");
         }
@@ -39,10 +39,10 @@ Crafty.c("Defense",{
 
         //This was an attempt to make the block animation reverse, doesn't work
         if (component.isPlaying("PutinBlockAnimate"))
-            component.animate("PutinUnblockAnimate", 1);
+            component.animate("PutinUnBlockAnimate", 1);
         else{
             //Original return to idle block.
-            if (!component.isPlaying("PutinUnblockAnimate") && !component.isPlaying("PutinIdleAnimate")) {
+            if (!component.isPlaying("PutinUnBlockAnimate") && !component.isPlaying("PutinIdleAnimate")) {
                 component.animate("PutinIdleAnimate", -1);
             }else {
                 component.resumeAnimation()

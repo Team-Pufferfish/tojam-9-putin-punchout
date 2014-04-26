@@ -54,13 +54,13 @@ Crafty.c("Punch",{
             if (props.tweenName === "rightPunch") {
                 //component.trigger("punch.ending");
                 component.animate("PunchInAnimate",1);
-                this.tween({tweenName:"rightReturn",rotation: 0, x: gameSettings.width/2+100, y: gameSettings.height - 480}, 200);
+                this.tween({tweenName:"rightReturn",rotation: 0, x: gameSettings.width-400, y: gameSettings.height - 450}, 200);
             }else if (props.tweenName === "rightReturn"){
                 this.punch_out = 0;
             }else if (props.tweenName === "leftPunch") {
                 //component.trigger("punch.ending");
                 component.animate("PunchInAnimate",1);
-                this.tween({tweenName:"leftReturn",rotation: 0, x: gameSettings.width/2-350, y: gameSettings.height - 480}, 200);
+                this.tween({tweenName:"leftReturn",rotation: 0, x: -50, y: gameSettings.height - 450}, 200);
             }else if (props.tweenName === "leftReturn"){
                 this.punch_out = 0;
             }
@@ -95,14 +95,14 @@ Crafty.c("Punch",{
             component.animate("PunchOutAnimate",1);
             if (hand === component.LEFT_PUNCH)
                 if (punchType === component.STRAIGHT)
-                    component.tween({tweenName: "leftPunch", rotation: 25, x: gameSettings.width / 2 - 50, y: 50}, 200);
+                    component.tween({tweenName: "leftPunch", rotation: 0},200);//, x: gameSettings.width / 2 - 50, y: 50}, 200);
                 else
-                    component.tween({tweenName: "leftPunch", rotation: 45, x: gameSettings.width / 2 + 50, y: 50}, 200);
+                    component.tween({tweenName: "leftPunch", rotation: 25},200);//, x: gameSettings.width / 2 + 50, y: 50}, 200);
             else if (hand === component.RIGHT_PUNCH) {
                 if (punchType === component.STRAIGHT) {
-                    component.tween({tweenName: "rightPunch", rotation: -25, x: gameSettings.width / 2 - 150, y: 50}, 200);
+                    component.tween({tweenName: "rightPunch", rotation: 0},200);//, x: gameSettings.width / 2 - 150, y: 50}, 200);
                 }else {
-                    component.tween({tweenName: "rightPunch", rotation: -45, x: gameSettings.width / 2 - 250, y: 50}, 200);
+                    component.tween({tweenName: "rightPunch", rotation: -25},200);//, x: gameSettings.width / 2 - 250, y: 50}, 200);
                 }
             }
         }

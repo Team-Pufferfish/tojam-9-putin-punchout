@@ -42,12 +42,13 @@ Crafty.c('LRController',{
 
 
 
-        function checkForEventsToTrigger(new_controls){
-
-            component.trigger(attr.ID + ".ButtonChange",{
+        function checkForEventsToTrigger(new_controls) {
+            if (component.controls.convertToButton() !== new_controls.convertToButton()) {
+            component.trigger(attr.ID + ".ButtonChange", {
                 oldButtons: component.controls.convertToButton(),
                 newButtons: new_controls.convertToButton()
             });
+            }
 
             //console.log("old: "+component.controls.convertToButton() + " new:"+ new_controls.convertToButton())
 
