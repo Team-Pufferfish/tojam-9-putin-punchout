@@ -14,6 +14,8 @@ Crafty.c("Punch",{
     PUNCH_MISS: 0,
     PUNCH_BLOCK: 2,
     setPunchAnimation: function(shouldAnimate){
+
+
         this.ShouldAnimate = shouldAnimate;
         console.log("should animate: "+shouldAnimate);
         return this;
@@ -23,11 +25,20 @@ Crafty.c("Punch",{
         //on end animation call this
         component.bind("punch.ending",function(e){
             console.log("punch is ending");
+<<<<<<< Updated upstream
             var attackerZone = e.punchType * e.hand;
             var defenderZone = component.getZone(e.defenderID);
             console.log("punch.ending");
             var hitPercent = component.detectHit(attackerZone,defenderZone);
             var result = hitPercent === 0 ? component.PUNCH_MISS : component.PUNCH_HIT;
+=======
+            var attackerZone = e.spunchType * hand;
+            var defenderZone = component.getZone(defenderID);
+            console.log("punch.ending");
+            var result = component.detectHit(attackerZone,defenderZone);
+
+
+>>>>>>> Stashed changes
 
             console.log("punch result: ",result, " damage: ",hitPercent * e.strength);
 
@@ -84,8 +95,17 @@ Crafty.c("Punch",{
                 console.log("starting animate");
             } else {//tests only
                 console.log("triggering punch.ending");
+<<<<<<< Updated upstream
 
                 component.trigger("punch.ending", triggerData);
+=======
+                component.trigger("punch.ending",
+                    {
+                        punchType: punchType,
+                        hand: hand,
+                        defenderID: defenderID
+                     });
+>>>>>>> Stashed changes
             }
         }
 
