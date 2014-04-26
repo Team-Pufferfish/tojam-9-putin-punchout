@@ -41,6 +41,13 @@ Crafty.c("Defense",{
         Crafty.trigger("dodge.release");
         //defender.cancelTween();
 
+        var oldZone = component.getZone(component.playerID);
+        if (oldZone < 0){
+            component.setZone(component.playerID,-50);
+        } else {
+            component.setZone(component.playerID,50);
+        }
+
         //This was an attempt to make the block animation reverse, doesn't work
         if (component.isPlaying("BlockAnimate"))
             component.animate("UnBlockAnimate", 1);

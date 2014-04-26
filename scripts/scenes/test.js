@@ -1,6 +1,31 @@
 /**
  * Created by myabko on 2014-04-21.
  */
+
+Crafty.scene('newTesting',function(){
+    var player1 = Crafty.e("Player").setup({
+        ID: "Player1",
+        LeftControl: 'A',
+        RightControl: 'D',
+        BodySpriteName: 'PutinBody',
+        GloveSpriteName: 'HarperFist',
+        role: 1 //0 is attack
+    });
+
+    var player2 = Crafty.e("Player").setup({
+        ID: "Player2",
+        LeftControl: 'J',
+        RightControl: 'L',
+        BodySpriteName: 'PutinBody',
+        GloveSpriteName: 'HarperFist',
+        role: 0 //0 is attack
+    });
+
+
+
+
+});
+
 Crafty.scene('test', function(){
     var attackerControler = Crafty.e('LRController')
         .assignControls({
@@ -16,6 +41,7 @@ Crafty.scene('test', function(){
             RightControl: 'L'
         });
 
+
     //Graphics
     Crafty.sprite(480,450,"./animations/punch_jab.png", {fist1:[0,0]});
     Crafty.sprite(500,540, "./animations/putin_fullset.png", {PutinSprite: [0,0]});
@@ -23,12 +49,16 @@ Crafty.scene('test', function(){
     //Background Layer
     Crafty.e("Graphics").image("background_test.png");
 
-    var bodysprite = Crafty.e("Graphics,Zonable, Defense, PutinSprite, Boxer").attr({rotation:0,x: gameSettings.width/2 - 500/2, y:60}).origin("center")
+    var bodysprite = Crafty.e("Graphics,Zonable, Defense, PutinSprite, Boxer")
+        .attr({rotation:0,x: gameSettings.width/2 - 500/2, y:60})
+        .origin("center")
         .animate("IdleAnimate",-1);
     bodysprite.setCallbacks();
-    bodysprite.attr("playerID","dID");
+    bodysprite.attr("playerID","dID"  );
 
-    var lefty = Crafty.e('Graphics, Punch, fist1, BoxingGlove').attr({punch_out:0,rotation:0,x:-50, y: gameSettings.height - 450}).flip("X")
+    var lefty = Crafty.e('Graphics, Punch, fist1, BoxingGlove')
+        .attr({punch_out:0,rotation:0,x:-50, y: gameSettings.height - 450})
+        .flip("X")
         .origin("center");
     lefty.setPunchAnimation(true);
     lefty.setCallbacks();
