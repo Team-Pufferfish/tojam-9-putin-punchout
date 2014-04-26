@@ -43,12 +43,14 @@ Crafty.c("Punch",{
             console.log("punch tween completed: " + props.tweenName);
             if (props.tweenName === "rightPunch") {
                 component.trigger("punch.ending",props.triggerData);
+                this.punch_out = 1;
                 component.animate("PunchInAnimate",1);
                 this.tween({tweenName:"rightReturn",rotation: 0, x: gameSettings.width-400, y: gameSettings.height - 450}, 200);
             }else if (props.tweenName === "rightReturn"){
                 this.punch_out = 0;
             }else if (props.tweenName === "leftPunch") {
                 component.trigger("punch.ending",props.triggerData);
+                this.punch_out = 1;
                 component.animate("PunchInAnimate",1);
                 this.tween({tweenName:"leftReturn",rotation: 0, x: -50, y: gameSettings.height - 450}, 200);
             }else if (props.tweenName === "leftReturn"){
