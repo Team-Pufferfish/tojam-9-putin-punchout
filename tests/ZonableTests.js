@@ -25,6 +25,13 @@ test("should set zone properly with appropriately valued zone",function(){
 
 });
 
+test("should be able to set zone to 0",function(){
+    var entity = Crafty.e("Zonable");
+
+    entity.setZone("ZID",0);
+    equal(entity.getZone("ZID"),0);
+});
+
 asyncTest("should trigger an event on zone change",function(){
     var entity = Crafty.e("Zonable");
 

@@ -11,7 +11,7 @@ Crafty.c("Zonable",{
         var component = this;
 
 
-        if (!zone || zone > 100 || zone < -100){
+        if (zone === null || zone > 100 || zone < -100){
             throw new Error("cannot set zone");
         } else {
             //set zone here

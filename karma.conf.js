@@ -17,6 +17,7 @@ module.exports = function(config) {
       files: [
           'bower_components/crafty/dist/crafty.js',
           'bower_components/jQuery/dist/jquery.js',
+          'bower_components/underscore/underscore.js',
           'scripts/components/*.js',
           'tests/*.js'
       ],
