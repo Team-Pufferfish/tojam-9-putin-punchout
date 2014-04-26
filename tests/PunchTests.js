@@ -6,7 +6,8 @@ asyncTest("when a punch goes in the wrong direction it should miss",function(){
     expect(2);
     
     var attacker = Crafty.e("Punch")
-        .setPunchAnimation(false);
+        .setPunchAnimation(false)
+        .setCallbacks();
     
     var defender = Crafty.e("Zonable");
 
@@ -27,8 +28,8 @@ asyncTest("when a punch goes in the right direction it should hit",function(){
     expect(2);
 
     var attacker = Crafty.e("Punch")
-        .setPunchAnimation(false);
-
+        .setPunchAnimation(false)
+        .setCallbacks();
     var defender = Crafty.e("Zonable");
 
     attacker.bind("punch.end",function(e){
@@ -47,7 +48,8 @@ asyncTest("when a punch goes in the right direction but is a near hit it should 
     expect(2);
 
     var attacker = Crafty.e("Punch")
-        .setPunchAnimation(false);
+        .setPunchAnimation(false)
+        .setCallbacks();
 
     var defender = Crafty.e("Zonable");
 

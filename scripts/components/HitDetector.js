@@ -5,7 +5,6 @@ Crafty.c("HitDetector",{
    init: function(){
    },
    detectHit: function(attackZone,defenderZone){
-       console.log("detect a hit");
        var component = this;
        var detectedZone;
 
@@ -23,11 +22,9 @@ Crafty.c("HitDetector",{
 
        if (detectedZone === 0){
             component.trigger("hit.missed");
-           console.log("hit missed");
        }
        else {
            component.trigger("hit.landed",detectedZone);
-           console.log("hit landed");
        }
 
        return detectedZone;

@@ -35,7 +35,7 @@ Crafty.scene('test', function(){
         .animate("PutinIdleAnimate",-1);
      //   .reel('PutinBlockAnimation',1000,0, 2)
     bodysprite.setCallbacks();
-    bodysprite.setZone("dID",1);
+    bodysprite.setZone("dID",-100);
 
     var lefty = Crafty.e('Graphics, Punch, fist1').attr({punch_out:0,rotation:0,x:-50, y: gameSettings.height - 450}).flip("X")
         .reel('PunchOutAnimate',200, [[0, 0], [1, 0], [2, 0]])
