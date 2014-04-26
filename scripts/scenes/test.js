@@ -7,8 +7,8 @@ Crafty.scene('newTesting',function(){
         ID: "Player1",
         LeftControl: 'A',
         RightControl: 'D',
-        BodySpriteName: 'PutinBody',
-        GloveSpriteName: 'HarperFist',
+        BodySpriteName: 'PutinSprite',
+        GloveSpriteName: 'PutinFist',
         role: 1 //0 is attack
     });
 
@@ -16,7 +16,7 @@ Crafty.scene('newTesting',function(){
         ID: "Player2",
         LeftControl: 'J',
         RightControl: 'L',
-        BodySpriteName: 'PutinBody',
+        BodySpriteName: 'HarperSprite',
         GloveSpriteName: 'HarperFist',
         role: 0 //0 is attack
     });
@@ -49,11 +49,7 @@ Crafty.scene('test', function(){
             RightControl: '2'
         });
 
-    //Graphics
-    Crafty.sprite(480,550,"./animations/harper_punch.png", {fistp1:[0,0]});
-    Crafty.sprite(480,450,"./animations/punch_jab.png", {fistp2:[0,0]});
-    Crafty.sprite(500,540, "./animations/putin_fullset.png", {PutinSprite: [0,0]});
-    Crafty.sprite(500,540, "./animations/putin_fullset.png", {HarperSprite: [0,0]});
+
 
     //Background Layer
     Crafty.e("Graphics").image("background_test.png");
