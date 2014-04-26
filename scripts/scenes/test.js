@@ -54,7 +54,7 @@ Crafty.scene('test', function(){
     //Command Support
     attackerControler.bind("attacko.ButtonComplete",function(change) {
         console.log("attacker  " + JSON.stringify(change));
-        if (change.button === attackerControler.LEFT_BUTTON && lefty.punch_out != 1) {
+        if (change.button === attackerControler.LEFT_BUTTON  && lefty.punch_out === 0 && righty.punch_out != 2) {
             if (change.timeHeld <= 500) {
                 console.log("jab:" + change.timeHeld );
                 lefty.ThrowPunch("pID","dID",lefty.STRAIGHT,lefty.LEFT_PUNCH,0,100);
@@ -62,7 +62,7 @@ Crafty.scene('test', function(){
                 console.log("hook:" +  change.timeHeld);
                 lefty.ThrowPunch("pID","dID",lefty.HOOK,lefty.LEFT_PUNCH,0,100);
             }
-        } else if (change.button === attackerControler.RIGHT_BUTTON && righty.punch_out != 1) {
+        } else if (change.button === attackerControler.RIGHT_BUTTON && righty.punch_out === 0 && lefty.punch_out != 2) {
             if (change.timeHeld <= 500) {
                righty.ThrowPunch("pID","dID",righty.STRAIGHT,righty.RIGHT_PUNCH,0,100);
             }else{

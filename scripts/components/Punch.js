@@ -53,12 +53,14 @@ Crafty.c("Punch",{
             console.log("punch tween completed: " + props.tweenName);
             if (props.tweenName === "rightPunch") {
                 //component.trigger("punch.ending");
+                this.punch_out = 1;
                 component.animate("PunchInAnimate",1);
                 this.tween({tweenName:"rightReturn",rotation: 0, x: gameSettings.width-400, y: gameSettings.height - 450}, 200);
             }else if (props.tweenName === "rightReturn"){
                 this.punch_out = 0;
             }else if (props.tweenName === "leftPunch") {
                 //component.trigger("punch.ending");
+                this.punch_out = 1;
                 component.animate("PunchInAnimate",1);
                 this.tween({tweenName:"leftReturn",rotation: 0, x: -50, y: gameSettings.height - 450}, 200);
             }else if (props.tweenName === "leftReturn"){
@@ -91,18 +93,22 @@ Crafty.c("Punch",{
         }
 
         function animate(component){
-            component.punch_out = 1;
+            component.punch_out = 2;
             component.animate("PunchOutAnimate",1);
             if (hand === component.LEFT_PUNCH)
                 if (punchType === component.STRAIGHT)
-                    component.tween({tweenName: "leftPunch", rotation: 0},200);//, x: gameSettings.width / 2 - 50, y: 50}, 200);
+                    component.tween({tweenName: "leftPunch", rotation: 0, x:50},200);//, x: gameSettings.width / 2 - 50, y: 50}, 200);
+            //component.tween({tweenName: "leftPunch", rotation: 0},200);//, x: gameSettings.width / 2 - 50, y: 50}, 200);
                 else
-                    component.tween({tweenName: "leftPunch", rotation: 25},200);//, x: gameSettings.width / 2 + 50, y: 50}, 200);
+                    component.tween({tweenName: "leftPunch", rotation: 15, x: gameSettings.width * 0.2}, 200);
+                    //component.tween({tweenName: "leftPunch", rotation: 25},200);//, x: gameSettings.width / 2 + 50, y: 50}, 200);
             else if (hand === component.RIGHT_PUNCH) {
                 if (punchType === component.STRAIGHT) {
-                    component.tween({tweenName: "rightPunch", rotation: 0},200);//, x: gameSettings.width / 2 - 150, y: 50}, 200);
+                    component.tween({tweenName: "rightPunch", rotation: 0,x:gameSettings.width-530},200);//, x: gameSettings.width / 2 - 150, y: 50}, 200);
+                    //component.tween({tweenName: "rightPunch", rotation: 0},200);//, x: gameSettings.width / 2 - 150, y: 50}, 200);
                 }else {
-                    component.tween({tweenName: "rightPunch", rotation: -25},200);//, x: gameSettings.width / 2 - 250, y: 50}, 200);
+                    component.tween({tweenName: "rightPunch", rotation: -15, x: gameSettings.width * 0.2}, 200);
+                    //component.tween({tweenName: "rightPunch", rotation: -25},200);//, x: gameSettings.width / 2 - 250, y: 50}, 200);
                 }
             }
         }
