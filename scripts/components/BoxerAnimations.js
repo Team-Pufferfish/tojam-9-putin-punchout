@@ -17,22 +17,49 @@ Crafty.c("BoxingGlove", {
     }
 });
 
-Crafty.c("Swapper", {
-    init: function () {
 
-    },
-    SwapPlayers: function (direction, body1, fistl1, fistr1, body2, fistl2, fistr2) {
-        if(direction === "left"){
-            //tween body left
-            //tween glove right
-            //tween glove right
+     var SwapPlayers =  function (direction, time, body1, fistl1, fistr1, body2, fistl2, fistr2) {
+         if (direction === "left") {
+             //tween body2 return left
+             body1.tween({tweenName: "bodyShiftOut", rotation: 0, x: gameSettings.width / 2 - 500 / 2 - 1000, y: 60}, time);
+             //tween glove2 return right
+             fistr1.tween({tweenName: "rightShiftOut", rotation: 0, x: gameSettings.width - 400 + 1000, y: gameSettings.height - 400}, time);
+             //tween glove2 return right
+             fistl1.tween({tweenName: "leftShiftOut", rotation: 0, x: -50 + 1000, y: gameSettings.height - 400}, time);
 
-            //set body2 right
-            //set glove2 left
+             //set body2 right
+             body2.attr({x: gameSettings.width / 2 - 500 / 2 + 1000, y: 60});
+             //set glove2 left
+             fistr2.attr({x: gameSettings.width - 400 - 1000, y: gameSettings.height - 400});
+             fistl2.attr({x: -50 - 1000, y: gameSettings.height - 400});
 
-            //tween body2 left
-            //tween glove2 right
-            //tween glove2 right
-        }
-    }
-});
+             //tween body2 return left
+             body2.tween({tweenName: "bodyShift", rotation: 0, x: gameSettings.width / 2 - 500 / 2, y: 60}, time);
+             //tween glove2 return right
+             fistr2.tween({tweenName: "rightShiftBack", rotation: 0, x: gameSettings.width - 400, y: gameSettings.height - 400}, time);
+             //tween glove2 return right
+             fistl2.tween({tweenName: "leftShiftBack", rotation: 0, x: -50, y: gameSettings.height - 400}, time);
+         }
+
+         if (direction === "right") {
+             //tween body2 return left
+             body2.tween({tweenName: "bodyShiftOut", rotation: 0, x: gameSettings.width / 2 - 500 / 2 - 1000, y: 60}, time);
+             //tween glove2 return right
+             fistr2.tween({tweenName: "rightShiftOut", rotation: 0, x: gameSettings.width - 400 + 1000, y: gameSettings.height - 400}, time);
+             //tween glove2 return right
+             fistl2.tween({tweenName: "leftShiftOut", rotation: 0, x: -50 + 1000, y: gameSettings.height - 400}, time);
+
+             //set body2 right
+             body1.attr({x: gameSettings.width / 2 - 500 / 2 + 1000, y: 60});
+             //set glove2 left
+             fistr1.attr({x: gameSettings.width - 400 - 1000, y: gameSettings.height - 400});
+             fistl1.attr({x: -50 - 1000, y: gameSettings.height - 400});
+
+             //tween body2 return left
+             body1.tween({tweenName: "bodyShift", rotation: 0, x: gameSettings.width / 2 - 500 / 2, y: 60}, time);
+             //tween glove2 return right
+             fistr1.tween({tweenName: "rightShiftBack", rotation: 0, x: gameSettings.width - 400, y: gameSettings.height - 400}, time);
+             //tween glove2 return right
+             fistl1.tween({tweenName: "leftShiftBack", rotation: 0, x: -50, y: gameSettings.height - 400}, time);
+         }
+     }

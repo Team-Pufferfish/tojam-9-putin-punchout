@@ -16,6 +16,14 @@ Crafty.scene('test', function(){
             RightControl: 'L'
         });
 
+    //temp controller to show britt stuf
+    var gameController = Crafty.e('LRController')
+        .assignControls({
+            ID: 'gamecontrol',
+            LeftControl: '1',
+            RightControl: '2'
+        });
+
     //Graphics
     Crafty.sprite(480,550,"./animations/harper_punch.png", {fistp1:[0,0]});
     Crafty.sprite(480,450,"./animations/punch_jab.png", {fistp2:[0,0]});
@@ -95,7 +103,21 @@ Crafty.scene('test', function(){
         }
     });
 
+
+    gameController.bind("gamecontrol.ButtonComplete",function(change) {
+        if (change.button === gameController.LEFT_BUTTON) {
+            console.log("Swap players");
+            SwapPlayers("left", 1000, bodysprite, lefty, righty, body2sprite, lefty2, righty2);
+        }else if (change.button === gameController.RIGHT_BUTTON){
+            console.log("Swap players");
+            SwapPlayers("right", 1000, bodysprite, lefty, righty, body2sprite, lefty2, righty2);
+        }
+        });
+
     //Draw UI
     Crafty.e("Graphics").image("gui_layout_test.png");
+    Crafty.e("2D, DOM, Text").attr({ x: gameSettings.width/2-(41), y: 8 }).text('00:00')
+        .textColor('#FFFFFF', 1.0)
+        .textFont({ size: '32px', family:"Arial", weight: 'bold' });
 
 });
