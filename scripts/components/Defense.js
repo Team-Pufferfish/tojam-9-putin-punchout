@@ -90,12 +90,8 @@ Crafty.c("Defense",{
                     break;
             }
         });
-        /*component.bind("punch.end", function(props){
-                if (props.result === component.PUNCH_HIT){
-                    component.tint("#F00", 0.5);
-                }
-            }
-        );*/
+
+        return component;
     }
 
 });

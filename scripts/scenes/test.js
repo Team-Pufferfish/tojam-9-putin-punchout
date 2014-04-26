@@ -21,29 +21,24 @@ Crafty.scene('newTesting',function(){
         opponentID: "Player2",
         LeftControl: 'A',
         RightControl: 'D',
-        BodySpriteName: 'PutinBody',
-        GloveSpriteName: 'HarperFist',
+        BodySpriteName: 'PutinSprite',
+        GloveSpriteName: 'PutinFist',
         role: 1 //0 is attack
-    });
+    }).setZone("Player1",0);
 
     var player2 = Crafty.e("Player").setup({
         ID: "Player2",
         opponentID: "Player1",
         LeftControl: 'J',
         RightControl: 'L',
-        BodySpriteName: 'PutinBody',
+        BodySpriteName: 'HarperSprite',
         GloveSpriteName: 'HarperFist',
         role: 0 //0 is attack
-    });
+    }).setZone("Player1",0);
 
     gameController.bind("gamecontrol.ButtonComplete",function(change) {
-        if (change.button === gameController.LEFT_BUTTON) {
-            console.log("Swap players");
-            //SwapPlayers("left", 1000, bodysprite, lefty, righty, body2sprite, lefty2, righty2);
-        }else if (change.button === gameController.RIGHT_BUTTON){
-            console.log("Swap players");
-            //SwapPlayers("right", 1000, bodysprite, lefty, righty, body2sprite, lefty2, righty2);
-        }
+        player1.swapRole(1000);
+        player2.swapRole(1000);
     });
 
     //Draw UI

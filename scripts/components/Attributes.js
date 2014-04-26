@@ -34,6 +34,14 @@ Crafty.c("Attributes",{
         }
     },
 
+    changeAttribute: function(ID,attributeName,changeBy){
+        if (attributeHolder[ID] && attributeHolder[ID][attributeName] !== null) {
+           this.assignAttribute(ID,attributeName,attributeHolder[ID][attributeName] + changeBy);
+        } else {
+            throw new Error("attribute does not exist: " + ID + "." + attributeName);
+        }
+    },
+
     getAttribute: function(ID,attributeName) {
         if (attributeHolder[ID] && attributeHolder[ID][attributeName] !== null) {
             return attributeHolder[ID][attributeName];
