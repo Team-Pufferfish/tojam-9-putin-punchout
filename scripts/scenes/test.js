@@ -18,7 +18,8 @@ Crafty.scene('test', function(){
 
     //Graphics
     //Crafty.sprite(800,600,"vladimir_test002", {putinbody:[0,0]});
-    Crafty.sprite(240,436,"punch_test001.png", {fist1:[0,0]});
+    //Crafty.sprite(240,436,"punch_test001.png", {fist1:[0,0]});
+    Crafty.sprite(480,450,"./animations/punch_jab.png", {fist1:[0,0]});
     //animations
     //Crafty.sprite(500,540, "putin_testanimation.png", {PunchAnimate: [0,0]});
     Crafty.sprite(500,540, "./animations/putin_fullset.png", {PutinSprite: [0,0]});
@@ -26,7 +27,7 @@ Crafty.scene('test', function(){
     //Background Layer
     Crafty.e("Graphics").image("background_test.png");
 
-    var bodysprite = Crafty.e("Graphics,Zonable, Defense,SpriteAnimation,PutinSprite").attr({rotation:0,x: gameSettings.width/2 - 500/2, y:60}).origin("center")
+    var bodysprite = Crafty.e("Graphics,Zonable, Defense,PutinSprite").attr({rotation:0,x: gameSettings.width/2 - 500/2, y:60}).origin("center")
         .reel('PutinIdleAnimate',1000, [[0, 0], [1, 0], [2, 0], [3, 0],[0,1]])
         .reel('PutinBlockAnimate',400, [[1, 1], [2, 1], [3, 1]])
         .reel('PutinUnBlockAnimate',-400, [[3, 1], [2, 1], [1, 1]])
@@ -35,13 +36,17 @@ Crafty.scene('test', function(){
     bodysprite.setCallbacks();
     bodysprite.setZone("dID",1);
 
-    var lefty = Crafty.e('Graphics, Punch, fist1').attr({punch_out:0,rotation:0,x:gameSettings.width/2-350, y: gameSettings.height - 150}).flip("X")
+    var lefty = Crafty.e('Graphics, Punch, fist1').attr({punch_out:0,rotation:0,x:gameSettings.width/2-350, y: gameSettings.height - 480}).flip("X")
+        .reel('PunchOutAnimate',200, [[0, 0], [1, 0], [2, 0]])
+        .reel('PunchInAnimate',200, [[2, 0], [1, 0], [0, 0]])
         .origin("center");
     lefty.setPunchAnimation(true);
     lefty.setCallbacks();
 
-    var righty = Crafty.e('Graphics, Punch, fist1').attr({punch_out:0,rotation:0,x: gameSettings.width/2+100, y: gameSettings.height - 150})
-       .origin("center");
+    var righty = Crafty.e('Graphics, Punch, fist1').attr({punch_out:0,rotation:0,x: gameSettings.width/2+100, y: gameSettings.height - 480})
+        .reel('PunchOutAnimate',200, [[0, 0], [1, 0], [2, 0]])
+        .reel('PunchInAnimate',200, [[2, 0], [1, 0], [0, 0]])
+        .origin("center");
     righty.setPunchAnimation(true);
     righty.setCallbacks();
 

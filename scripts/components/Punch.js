@@ -53,12 +53,14 @@ Crafty.c("Punch",{
             console.log("punch tween completed: " + props.tweenName);
             if (props.tweenName === "rightPunch") {
                 //component.trigger("punch.ending");
-                this.tween({tweenName:"rightReturn",rotation: 0, x: gameSettings.width/2+100, y: gameSettings.height - 150}, 200);
+                component.animate("PunchInAnimate",1);
+                this.tween({tweenName:"rightReturn",rotation: 0, x: gameSettings.width/2+100, y: gameSettings.height - 480}, 200);
             }else if (props.tweenName === "rightReturn"){
                 this.punch_out = 0;
             }else if (props.tweenName === "leftPunch") {
                 //component.trigger("punch.ending");
-                this.tween({tweenName:"leftReturn",rotation: 0, x: gameSettings.width/2-350, y: gameSettings.height - 150}, 200);
+                component.animate("PunchInAnimate",1);
+                this.tween({tweenName:"leftReturn",rotation: 0, x: gameSettings.width/2-350, y: gameSettings.height - 480}, 200);
             }else if (props.tweenName === "leftReturn"){
                 this.punch_out = 0;
             }
@@ -90,6 +92,7 @@ Crafty.c("Punch",{
 
         function animate(component){
             component.punch_out = 1;
+            component.animate("PunchOutAnimate",1);
             if (hand === component.LEFT_PUNCH)
                 if (punchType === component.STRAIGHT)
                     component.tween({tweenName: "leftPunch", rotation: 25, x: gameSettings.width / 2 - 50, y: 50}, 200);

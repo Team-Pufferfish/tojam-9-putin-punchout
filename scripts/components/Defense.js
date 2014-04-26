@@ -36,9 +36,12 @@ Crafty.c("Defense",{
         Crafty.trigger("block.release");
         Crafty.trigger("dodge.release");
         //defender.cancelTween();
+
+        //This was an attempt to make the block animation reverse, doesn't work
         if (component.isPlaying("PutinBlockAnimate"))
             component.animate("PutinUnblockAnimate", 1);
         else{
+            //Original return to idle block.
             if (!component.isPlaying("PutinUnblockAnimate") && !component.isPlaying("PutinIdleAnimate")) {
                 component.animate("PutinIdleAnimate", -1);
             }else {
