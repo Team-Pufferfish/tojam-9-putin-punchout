@@ -57,7 +57,6 @@ Crafty.c("Punch",{
                 this.punch_out = 0;
             }
         });
-
         return component;
     },
     ThrowPunch: function(playerID, defenderID,punchType,hand,zone,strength){
