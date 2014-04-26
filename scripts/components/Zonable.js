@@ -30,6 +30,9 @@ Crafty.c("Zonable",{
             component.assignAttribute(playerID,"zone",zone);
         }
 
+        console.log(playerID,"new zone:",zone);
+
+
 
     },
 

@@ -28,7 +28,7 @@ Crafty.scene('test', function(){
     var bodysprite = Crafty.e("Graphics,Zonable, Defense, PutinSprite, Boxer").attr({rotation:0,x: gameSettings.width/2 - 500/2, y:60}).origin("center")
         .animate("IdleAnimate",-1);
     bodysprite.setCallbacks();
-    bodysprite.setZone("dID",-100);
+    bodysprite.attr("playerID","dID");
 
     var body2sprite = Crafty.e("Graphics,Zonable, Defense, HarperSprite, Boxer").attr({rotation:0,x: gameSettings.width/2 - 500/2 + 1000, y:60}).origin("center")
         .animate("IdleAnimate",-1);

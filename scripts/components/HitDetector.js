@@ -7,7 +7,6 @@ Crafty.c("HitDetector",{
    detectHit: function(attackZone,defenderZone){
        var component = this;
        var detectedZone;
-
        if (Math.abs(defenderZone - attackZone) >= 100){
            detectedZone =  0;
        }
@@ -17,7 +16,7 @@ Crafty.c("HitDetector",{
                defenderZone = Math.abs(defenderZone);
 
            }
-           detectedZone = 1 - ((defenderZone - attackZone) / 100);
+           detectedZone = 1 - (Math.abs(defenderZone - attackZone) / 100);
        }
 
        if (detectedZone === 0){
