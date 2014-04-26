@@ -11,10 +11,10 @@ Crafty.c("Defense",{
         component.reelPosition(0);
         if (direction === "left"){
             component.tween({tweenName:"dodgeLeft",rotation:0,x: gameSettings.width/2 - 462/2-150, y:80}, time);
-            component.animate("DodgeAnimate", 1);
+            component.animate("DodgeLeftAnimate", 1);
         }else if (direction === "right"){
             component.tween({tweenName:"dodgeRight",rotation:0,x: gameSettings.width/2 - 462/2+150, y:80}, time);
-            component.animate("DodgeAnimate", 1);
+            component.animate("DodgeRightAnimate", 1);
         }else{
             console.log("dodged in a direction not governed by reality");
         }

@@ -17,8 +17,10 @@ Crafty.scene('test', function(){
         });
 
     //Graphics
-    Crafty.sprite(480,450,"./animations/punch_jab.png", {fist1:[0,0]});
+    Crafty.sprite(480,550,"./animations/harper_punch.png", {fistp1:[0,0]});
+    Crafty.sprite(480,450,"./animations/punch_jab.png", {fistp2:[0,0]});
     Crafty.sprite(500,540, "./animations/putin_fullset.png", {PutinSprite: [0,0]});
+    Crafty.sprite(500,540, "./animations/putin_fullset.png", {HarperSprite: [0,0]});
 
     //Background Layer
     Crafty.e("Graphics").image("background_test.png");
@@ -28,12 +30,27 @@ Crafty.scene('test', function(){
     bodysprite.setCallbacks();
     bodysprite.setZone("dID",-100);
 
-    var lefty = Crafty.e('Graphics, Punch, fist1, BoxingGlove').attr({punch_out:0,rotation:0,x:-50, y: gameSettings.height - 450}).flip("X")
+    var body2sprite = Crafty.e("Graphics,Zonable, Defense, HarperSprite, Boxer").attr({rotation:0,x: gameSettings.width/2 - 500/2 + 1000, y:60}).origin("center")
+        .animate("IdleAnimate",-1);
+    body2sprite.setCallbacks();
+    body2sprite.setZone("dID2",1);
+
+    var lefty = Crafty.e('Graphics, Punch, fistp1, BoxingGlove').attr({punch_out:0,rotation:0,x:-50, y: gameSettings.height - 400}).flip("X")
         .origin("center");
     lefty.setPunchAnimation(true);
     lefty.setCallbacks();
 
-    var righty = Crafty.e('Graphics, Punch, fist1, BoxingGlove').attr({punch_out:0,rotation:0,x: gameSettings.width-400, y: gameSettings.height - 450})
+    var righty = Crafty.e('Graphics, Punch, fistp1, BoxingGlove').attr({punch_out:0,rotation:0,x: gameSettings.width-400, y: gameSettings.height - 400})
+        .origin("center");
+    righty.setPunchAnimation(true);
+    righty.setCallbacks();
+
+    var lefty2 = Crafty.e('Graphics, Punch, fistp2, BoxingGlove').attr({punch_out:0,rotation:0,x:-50, y: gameSettings.height - 400 + 1000}).flip("X")
+        .origin("center");
+    lefty.setPunchAnimation(true);
+    lefty.setCallbacks();
+
+    var righty2 = Crafty.e('Graphics, Punch, fistp2, BoxingGlove').attr({punch_out:0,rotation:0,x: gameSettings.width-400 + 1000, y: gameSettings.height - 400})
         .origin("center");
     righty.setPunchAnimation(true);
     righty.setCallbacks();
@@ -42,7 +59,7 @@ Crafty.scene('test', function(){
     attackerControler.bind("attacko.ButtonComplete",function(change) {
         console.log("attacker  " + JSON.stringify(change));
         if (change.button === attackerControler.LEFT_BUTTON  && lefty.punch_out === 0 && righty.punch_out != 2) {
-            if (change.timeHeld <= 500) {
+            if (change.timeHeld <= 350) {
                 console.log("jab:" + change.timeHeld );
                 lefty.ThrowPunch("pID","dID",lefty.STRAIGHT,lefty.LEFT_PUNCH,0,100);
             }else{
@@ -50,7 +67,7 @@ Crafty.scene('test', function(){
                 lefty.ThrowPunch("pID","dID",lefty.HOOK,lefty.LEFT_PUNCH,0,100);
             }
         } else if (change.button === attackerControler.RIGHT_BUTTON && righty.punch_out === 0 && lefty.punch_out != 2) {
-            if (change.timeHeld <= 500) {
+            if (change.timeHeld <= 350) {
                righty.ThrowPunch("pID","dID",righty.STRAIGHT,righty.RIGHT_PUNCH,0,100);
             }else{
                 console.log("hook:" +  change.timeHeld);
