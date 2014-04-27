@@ -22,5 +22,4 @@ Crafty.c("Splat", {
         this.attr({x:x,y:y});
         this.animate(reelName, 1);
     }
-
 });
