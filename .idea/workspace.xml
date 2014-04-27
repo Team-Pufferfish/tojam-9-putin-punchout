@@ -1,18 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
   <component name="ChangeListManager">
-    <list default="true" id="504ff490-7ac0-413e-bfca-b3f3a876df24" name="Default" comment="">
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/scripts/components/Attributes.js" afterPath="$PROJECT_DIR$/scripts/components/Attributes.js" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/scripts/components/Combo.js" afterPath="$PROJECT_DIR$/scripts/components/Combo.js" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/scripts/components/ComboBar.js" afterPath="$PROJECT_DIR$/scripts/components/ComboBar.js" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/scripts/components/Defense.js" afterPath="$PROJECT_DIR$/scripts/components/Defense.js" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/scripts/components/HitDetector.js" afterPath="$PROJECT_DIR$/scripts/components/HitDetector.js" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/scripts/components/Player.js" afterPath="$PROJECT_DIR$/scripts/components/Player.js" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/scripts/components/Punch.js" afterPath="$PROJECT_DIR$/scripts/components/Punch.js" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/scripts/components/Zonable.js" afterPath="$PROJECT_DIR$/scripts/components/Zonable.js" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/scripts/scenes/test.js" afterPath="$PROJECT_DIR$/scripts/scenes/test.js" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
-    </list>
+    <list default="true" id="504ff490-7ac0-413e-bfca-b3f3a876df24" name="Default" comment="" />
     <list id="5f5b2cbf-2f03-4323-abd6-9646006d1c7e" name="Revert: Prevent double punches, fixed hook alignment. (88c399971bd3191bbae49442c1ed6c05fb461fa6)" comment="" />
     <ignored path="PutinPunchoutDay2.iws" />
     <option name="TRACKING_ENABLED" value="true" />
@@ -37,9 +26,13 @@
       <file leaf-file-name="test.js" pinned="false" current="true" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/scripts/scenes/test.js">
           <provider selected="true" editor-type-id="text-editor">
-            <state vertical-scroll-proportion="0.58064514" vertical-offset="0" max-vertical-offset="2700">
-              <caret line="19" column="0" selection-start-line="19" selection-start-column="0" selection-end-line="19" selection-end-column="0" />
-              <folding />
+            <state vertical-scroll-proportion="0.030560272" vertical-offset="0" max-vertical-offset="2790">
+              <caret line="1" column="0" selection-start-line="1" selection-start-column="0" selection-end-line="1" selection-end-column="0" />
+              <folding>
+                <marker date="1398630939000" expanded="true" signature="905:1114" placeholder="{&quot;ID&quot;: &quot;Player2&quot;...}" />
+                <marker date="1398630939000" expanded="true" signature="1680:1872" placeholder="{...}" />
+                <marker date="1398630939000" expanded="true" signature="2113:2351" placeholder="{...}" />
+              </folding>
             </state>
           </provider>
         </entry>
@@ -91,8 +84,8 @@
       <file leaf-file-name="Punch.js" pinned="false" current="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/scripts/components/Punch.js">
           <provider selected="true" editor-type-id="text-editor">
-            <state vertical-scroll-proportion="0.0" vertical-offset="1206" max-vertical-offset="2466">
-              <caret line="31" column="13" selection-start-line="31" selection-start-column="13" selection-end-line="31" selection-end-column="13" />
+            <state vertical-scroll-proportion="0.0" vertical-offset="1224" max-vertical-offset="2790">
+              <caret line="32" column="14" selection-start-line="32" selection-start-column="14" selection-end-line="32" selection-end-column="14" />
               <folding />
             </state>
           </provider>
@@ -623,7 +616,11 @@
       <created>1398622723465</created>
       <updated>1398622723465</updated>
     </task>
-    <option name="localTasksCounter" value="19" />
+    <task id="LOCAL-00019" summary="added death and scene transitions">
+      <created>1398630862275</created>
+      <updated>1398630862275</updated>
+    </task>
+    <option name="localTasksCounter" value="20" />
     <servers />
   </component>
   <component name="ToolWindowManager">
@@ -702,19 +699,20 @@
     <MESSAGE value="added in dodge sound" />
     <MESSAGE value="some alterations to sound effects." />
     <MESSAGE value="some fixes for stunning, added round sound effects" />
-    <option name="LAST_COMMIT_MESSAGE" value="some fixes for stunning, added round sound effects" />
+    <MESSAGE value="added death and scene transitions" />
+    <option name="LAST_COMMIT_MESSAGE" value="added death and scene transitions" />
   </component>
   <component name="XDebuggerManager">
     <breakpoint-manager>
       <breakpoints>
         <line-breakpoint enabled="true" type="javascript">
           <url>file://$PROJECT_DIR$/scripts/scenes/test.js</url>
-          <line>120</line>
+          <line>91</line>
           <option name="timeStamp" value="19" />
         </line-breakpoint>
         <line-breakpoint enabled="true" type="javascript">
           <url>file://$PROJECT_DIR$/scripts/scenes/test.js</url>
-          <line>25</line>
+          <line>1</line>
           <option name="timeStamp" value="20" />
         </line-breakpoint>
       </breakpoints>
@@ -726,7 +724,11 @@
       <provider selected="true" editor-type-id="text-editor">
         <state vertical-scroll-proportion="0.0" vertical-offset="324" max-vertical-offset="2484">
           <caret line="18" column="14" selection-start-line="18" selection-start-column="14" selection-end-line="18" selection-end-column="14" />
-          <folding />
+          <folding>
+            <marker date="1398630939000" expanded="true" signature="905:1114" placeholder="{&quot;ID&quot;: &quot;Player2&quot;...}" />
+            <marker date="1398630939000" expanded="true" signature="1680:1872" placeholder="{...}" />
+            <marker date="1398630939000" expanded="true" signature="2113:2351" placeholder="{...}" />
+          </folding>
         </state>
       </provider>
     </entry>
@@ -814,7 +816,11 @@
       <provider selected="true" editor-type-id="text-editor">
         <state vertical-scroll-proportion="0.0" vertical-offset="540" max-vertical-offset="1602">
           <caret line="30" column="24" selection-start-line="30" selection-start-column="24" selection-end-line="30" selection-end-column="24" />
-          <folding />
+          <folding>
+            <marker date="1398630939000" expanded="true" signature="905:1114" placeholder="{&quot;ID&quot;: &quot;Player2&quot;...}" />
+            <marker date="1398630939000" expanded="true" signature="1680:1872" placeholder="{...}" />
+            <marker date="1398630939000" expanded="true" signature="2113:2351" placeholder="{...}" />
+          </folding>
         </state>
       </provider>
     </entry>
@@ -948,8 +954,8 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/scripts/components/Punch.js">
       <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.0" vertical-offset="54" max-vertical-offset="2466">
-          <caret line="31" column="13" selection-start-line="31" selection-start-column="13" selection-end-line="31" selection-end-column="13" />
+        <state vertical-scroll-proportion="0.0" vertical-offset="1224" max-vertical-offset="2790">
+          <caret line="32" column="14" selection-start-line="32" selection-start-column="14" selection-end-line="32" selection-end-column="14" />
           <folding />
         </state>
       </provider>
@@ -1006,9 +1012,13 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/scripts/scenes/test.js">
       <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.58064514" vertical-offset="0" max-vertical-offset="2700">
-          <caret line="19" column="0" selection-start-line="19" selection-start-column="0" selection-end-line="19" selection-end-column="0" />
-          <folding />
+        <state vertical-scroll-proportion="0.030560272" vertical-offset="0" max-vertical-offset="2790">
+          <caret line="1" column="0" selection-start-line="1" selection-start-column="0" selection-end-line="1" selection-end-column="0" />
+          <folding>
+            <marker date="1398630939000" expanded="true" signature="905:1114" placeholder="{&quot;ID&quot;: &quot;Player2&quot;...}" />
+            <marker date="1398630939000" expanded="true" signature="1680:1872" placeholder="{...}" />
+            <marker date="1398630939000" expanded="true" signature="2113:2351" placeholder="{...}" />
+          </folding>
         </state>
       </provider>
     </entry>
