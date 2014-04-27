@@ -6,28 +6,37 @@
 
 Crafty.c("RoundTimer", {
     init: function () {
-        this.requires('2D, DOM, Attributes,Text');
+        this.requires('2D, DOM, Attributes,Text, Delay');
     },
 
-    loop: function (attr) {
+    initRoundTimer: function () {
         var component = this;
 
-        component.attr({ x: gameSettings.width/2-(41), y: 8 }).text('00:00')
+        component.attr({ x: gameSettings.width/2-(41), y: 8 })
+            .text('00:00')
             .textColor('#FFFFFF', 1.0)
             .textFont({ size: '32px', family:"Arial", weight: 'bold' });
-        return component;
 
-        var timer = Crafty.e("Attributes");
+        component.assignAttribute("Game","Timer",15);
 
-        timer.setAttribute("Timer",15000)
 
-        timer.createAttributeAutoIncrementor("timer","Timer",-1);
+        Crafty.bind("Game.attribute.changed", function(change){
+            if (change.newValue === 0)
+                Crafty.trigger("RoundEnd");
+            component.text(change.newValue);
 
-        component.bind("timer.attribute.changed", function(change){
-            console.log("tick")
-            if(change.name === "Timer"){
-                component.text(change.newValue);
-            }
         });
+        return component;
+    },
+
+    resetRoundTimer: function(roundTime){
+        this.assignAttribute("Game","Timer",roundTime);
+
+
+        this.delay(function(){
+           this.changeAttribute("Game","Timer",-1);
+       },1000,roundTime - 1);
+
+        return this;
     }
 });

@@ -30,6 +30,48 @@ Crafty.c("Player",{
        });
 
 
+       this.swapRole = function(time){
+           var component = this;
+           this.role = this.role === this.ATTACK_ROLE ? this.DEFEND_ROLE : this.ATTACK_ROLE;
+           this.input_locked = true;
+           //this.changeAttribute(this.playerID,"CurrentStamina", component.getAttribute(component.playerID,"MaxStamina"));
+           if (this.role === this.DEFEND_ROLE) {
+               this.setComboRole(false);
+               //tween glove2 return right
+               this.righty.tween({tweenName: "rightShiftOut", rotation: 0, x: gameSettings.width - 400 + 1000, y: gameSettings.height - 400}, time);
+               //tween glove2 return right
+               this.lefty.tween({tweenName: "leftShiftOut", rotation: 0, x: -50 + 1000, y: gameSettings.height - 400}, time);
+
+               //set body2 right
+               this.body.attr({x: gameSettings.width / 2 - 500 / 2 + 1000, y: 60});
+
+               //tween body2 return left
+               this.body.tween({tweenName: "bodyShift", rotation: 0, x: gameSettings.width / 2 - 500 / 2, y: 60}, time);
+               //tween glove2 return right
+
+           }
+
+           if (this.role=== this.ATTACK_ROLE) {
+               this.setComboRole(true);
+               this.righty.punch_out = 0;
+               this.lefty.punch_out = 0;
+               this.lefty.animate("PunchInAnimate",1);
+               this.righty.animate("PunchInAnimate",1);
+               //tween body2 return left
+               this.body.tween({tweenName: "bodyShiftOut", rotation: 0, x: gameSettings.width / 2 - 500 / 2 - 1000, y: 60}, time);
+
+               //set glove2 left
+               this.righty.attr({x: gameSettings.width - 400 - 1000, y: gameSettings.height - 400});
+               this.lefty.attr({x: -50 - 1000, y: gameSettings.height - 400});
+
+               //tween glove2 return right
+               this.righty.tween({tweenName: "rightShiftBack", rotation: 0, x: gameSettings.width - 400, y: gameSettings.height - 400}, time);
+               //tween glove2 return right
+               this.lefty.tween({tweenName: "leftShiftBack", rotation: 0, x: -50, y: gameSettings.height - 400}, time);
+           }
+           this.assignAttribute(attr.ID,"CurrentStamina",this.getAttribute(attr.ID,"MaxStamina"));
+       }
+
        component.role = attr.role;
        //Command Support
        function setupSprites() {
@@ -58,8 +100,8 @@ Crafty.c("Player",{
                    MaxStamina : 1000,
                    CurrentStamina: 1000,
                    TotalStamina: 1000,
-                   StaminaRegenRate: 5,
-                   PunchStrength: 50,
+                   StaminaRegenRate: 30,
+                   PunchStrength: 150,
                    BlockMitigator: 0.2,
                    DefensiveComboRate: 5,
                    OffensiveComboRate: 10,
@@ -120,6 +162,10 @@ Crafty.c("Player",{
                "StaminaRegenRate","MaxStamina");
            component.runAutoIncrementorLoop(500);
 
+
+
+           var isStunned = false;
+
                function triggerAction(e){
                    /* component.trigger("punch.end",{
                     punchType: e.punchType,
@@ -128,32 +174,55 @@ Crafty.c("Player",{
                     result: result
                     });*/
 
+
                    var attrToAdjust = "CurrentStamina";
                    if (e.result === component.PUNCH_BLOCK){
                        attrToAdjust = "MaxStamina";
                    }
 
                    var cStam = component.getAttribute(attr.opponentID,attrToAdjust);
-                   if (cStam > 0){
+                   if (cStam > 0 && !isStunned){
 
                        var damageToDeal = e.damage;
 
-                       if (cStam - e.damage < 0){
+
+                       //if !stunned
+                       if (cStam - e.damage <= 0){
+
+                           isStunned = true;
+                           Crafty.trigger("defender.stunned");
                            damageToDeal = cStam;
                        }
 
                        component.changeAttribute(attr.opponentID,attrToAdjust, -(damageToDeal));
-                       if (component.getAttribute(attr.opponentID,"CurrentStamina") >
-                           component.getAttribute(attr.opponentID,"MaxStamina")){
-                           component.assignAttribute(attr.opponentID,"CurrentStamina",component.getAttribute(attr.opponentID,"MaxStamina"));
-                       }
+
 
                    } else {
 
                        component.changeAttribute(attr.opponentID,"MaxStamina", -(e.damage));
                    }
 
+
+
+                   if (component.getAttribute(attr.opponentID,"CurrentStamina") >
+                       component.getAttribute(attr.opponentID,"MaxStamina")){
+                      // component.assignAttribute(attr.opponentID,"CurrentStamina",component.getAttribute(attr.opponentID,"MaxStamina"));
+                        isStunned = false;
+                     //  Crafty.trigger("defender.stunRelease");
+                   }
+
                }
+
+           component.bind(attr.ID+".attribute.changed",function(e){
+               if (e.name === "CurrentStamina" && component.role === component.DEFEND_ROLE){
+                   if (e.newValue === component.getAttribute(attr.ID,"MaxStamina")){
+                       Crafty.trigger("defender.stunRelease");
+                       isStunned = false;
+                   }
+
+
+               }
+           });
 
                component.lefty.bind("punch.end",triggerAction);
                component.righty.bind("punch.end",triggerAction);
@@ -161,6 +230,20 @@ Crafty.c("Player",{
 
 
        }
+
+       component.bind("defender.stunned",function(){
+           if (component.role === component.DEFEND_ROLE){
+               console.log("stunned");
+               component.input_locked = true;
+           }
+       });
+
+       component.bind("defender.stunRelease",function(){
+           if (component.role === component.DEFEND_ROLE){
+               component.input_locked = false;
+               console.log("stun broken");
+           }
+       });
 
 
        component.input_locked = false;
@@ -212,46 +295,9 @@ Crafty.c("Player",{
 
    },
 
-    swapRole: function(time){
-        var component = this;
-        this.role = this.role === this.ATTACK_ROLE ? this.DEFEND_ROLE : this.ATTACK_ROLE;
-            this.input_locked = true;
-            //this.changeAttribute(this.playerID,"CurrentStamina", component.getAttribute(component.playerID,"MaxStamina"));
-            if (this.role === this.DEFEND_ROLE) {
-                this.setComboRole(false);
-                //tween glove2 return right
-                this.righty.tween({tweenName: "rightShiftOut", rotation: 0, x: gameSettings.width - 400 + 1000, y: gameSettings.height - 400}, time);
-                //tween glove2 return right
-                this.lefty.tween({tweenName: "leftShiftOut", rotation: 0, x: -50 + 1000, y: gameSettings.height - 400}, time);
+    swapRole: undefined
 
-                //set body2 right
-                this.body.attr({x: gameSettings.width / 2 - 500 / 2 + 1000, y: 60});
 
-                //tween body2 return left
-                this.body.tween({tweenName: "bodyShift", rotation: 0, x: gameSettings.width / 2 - 500 / 2, y: 60}, time);
-                //tween glove2 return right
-
-            }
-
-            if (this.role=== this.ATTACK_ROLE) {
-                this.setComboRole(true);
-                this.righty.punch_out = 0;
-                this.lefty.punch_out = 0;
-                this.lefty.animate("PunchInAnimate",1);
-                this.righty.animate("PunchInAnimate",1);
-                //tween body2 return left
-                this.body.tween({tweenName: "bodyShiftOut", rotation: 0, x: gameSettings.width / 2 - 500 / 2 - 1000, y: 60}, time);
-
-                //set glove2 left
-                this.righty.attr({x: gameSettings.width - 400 - 1000, y: gameSettings.height - 400});
-                this.lefty.attr({x: -50 - 1000, y: gameSettings.height - 400});
-
-                //tween glove2 return right
-                this.righty.tween({tweenName: "rightShiftBack", rotation: 0, x: gameSettings.width - 400, y: gameSettings.height - 400}, time);
-                //tween glove2 return right
-                this.lefty.tween({tweenName: "leftShiftBack", rotation: 0, x: -50, y: gameSettings.height - 400}, time);
-            }
-        }
 
 
 
