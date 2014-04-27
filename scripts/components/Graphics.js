@@ -10,7 +10,6 @@ Crafty.c("Graphics", {
             //Crafty.load("vladimir_test002");
            // Crafty.load("punch_test001.png");
 
-
             //Graphics
             Crafty.sprite(480,550,"./animations/harper_punch.png", {HarperFist:[0,0]});
             Crafty.sprite(480,550,"./animations/putin_punch.png", {PutinFist:[0,0]});

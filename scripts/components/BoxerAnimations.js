@@ -2,10 +2,14 @@
 Crafty.c("Boxer", {
     init: function () {
             this.reel('IdleAnimate',1000, [[0, 0], [1, 0], [2, 0], [3, 0],[0,1]])
-            .reel('BlockAnimate',400, [[1, 1], [2, 1], [3, 1]])
-            .reel('UnBlockAnimate',-400, [[3, 1], [2, 1], [1, 1]])
-            .reel('DodgeRightAnimate',200, [[0, 2],[1, 2],[2, 2],[3,2]])
-            .reel('DodgeLeftAnimate',200, [[3,3],[2, 3],[1, 3], [0, 3]]);
+            .reel('BlockAnimate',300, [[1, 1], [2, 1], [3, 1]])
+            .reel('UnBlockAnimate',300, [[3, 1], [2, 1], [1, 1]])
+            .reel('DodgeRightAnimate',300, [[0, 2],[1, 2],[2, 2],[3,2]])
+            .reel('DodgeLeftAnimate',300, [[3,3],[2, 3],[1, 3],[0, 3]])
+            .reel('UnDodgeRightAnimate',300, [[3,2],[2, 2],[1, 2],[0, 2]])
+            .reel('UnDodgeLeftAnimate',300, [[0, 3],[1, 3],[2, 3],[3,3]])
+            .reel('UnDodgeRightBlockAnimate',300, [[3,2],[2, 2],[1, 2],[0, 2],[1, 1], [2, 1], [3, 1]])
+            .reel('UnDodgeLeftBlockAnimate',300, [[0, 3],[1, 3],[2, 3],[3,3],[1, 1], [2, 1], [3, 1]]);
     }
 
 });

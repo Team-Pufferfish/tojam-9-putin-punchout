@@ -30,7 +30,6 @@ Crafty.c("StaminaBar",{
             .color("#FFFFFF").attr({w:drawWidth*0.9, h:drawHeight*0.6,x:attr.topX + drawWidth * 0.05, y:attr.topY + drawHeight * 0.2});
 
         component.bind(attr.playerID + ".attribute.changed", function(change){
-           console.log("status bar changing")
            if(change.name === "MaxStamina" || change.name === "CurrentStamina"){
                maxStamina = component.getAttribute(attr.playerID,"MaxStamina"); //attr.maxStamina;
                currentStamina = component.getAttribute(attr.playerID,"CurrentStamina");//attr.stamina;

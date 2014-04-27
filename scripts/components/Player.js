@@ -177,13 +177,13 @@ Crafty.c("Player",{
        component.bind(attr.ID+".ButtonChange",function(change) {
            if (component.role === component.DEFEND_ROLE && !component.input_locked) {
                if (change.newButtons === component.LEFT_BUTTON) {
-                   component.body.Dodge(1, "left", 200);
+                   component.body.Dodge(1, "left", 300);
                } else if (change.newButtons === component.RIGHT_BUTTON) {
-                   component.body.Dodge(1, "right", 200);
+                   component.body.Dodge(1, "right", 300);
                } else if (change.newButtons === component.BOTH_BUTTONS) {
-                   component.body.Block(1, 200)
+                   component.body.Block(1, 300)
                } else if (change.newButtons === component.NO_BUTTON) {
-                   component.body.GoNeutral(1, 200);
+                   component.body.GoNeutral(1, 300);
                } else {
                    console.log("Is this real life?!");
                }

@@ -46,10 +46,9 @@ Crafty.scene('newTesting',function(){
 
     //Draw UI
     Crafty.e("Graphics").image("gui_layout_test.png");
-    Crafty.e("2D, DOM, Text").attr({ x: gameSettings.width/2-(41), y: 8 }).text('00:00')
+    Crafty.e("RoundTimer").attr({ x: gameSettings.width/2-(41), y: 8 }).text('00:00')
         .textColor('#FFFFFF', 1.0)
         .textFont({ size: '32px', family:"Arial", weight: 'bold' });
-
 
     Crafty.e("StaminaBar").setup({
         playerID: "Player1",

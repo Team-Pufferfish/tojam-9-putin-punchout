@@ -27,38 +27,44 @@ Crafty.c("Defense",{
         var component = this;
         Crafty.trigger("block.start");
         //defender.cancelTween();
-        component.tween({tweenName:"blockAction",rotation:0,x: gameSettings.width/2 - 500/2, y:110}, time);
         component.pauseAnimation();
         component.reelPosition(0);
-        if (!component.isPlaying("BlockAnimate")) {
-            component.animate("BlockAnimate", 1);
+        if (!component.isPlaying("BlockAnimate")&&!component.isPlaying("UnDodgeRightBlockAnimate")) {
+            if (component.getZone(component.playerID) === 100) {
+                component.animate("UnDodgeRightBlockAnimate", 1);
+                component.setZone(component.playerID,50);
+            }else if (component.getZone(component.playerID) === -100) {
+                component.animate("UnDodgeLeftBlockAnimate", 1);
+                component.setZone(component.playerID,-50);
+            }else {
+                component.setZone(component.playerID,0);
+                component.animate("BlockAnimate", 1);
+            }
         }
-        //component.animate("PutinBlockAnimate",1);
+        component.tween({tweenName:"blockAction",rotation:0,x: gameSettings.width/2 - 500/2, y:110}, time);
     },
     GoNeutral: function (playerID, time) {
         var component = this;
         Crafty.trigger("block.release");
         Crafty.trigger("dodge.release");
-        //Is Block = false
         //Remove constant dodge cost
+        if (component.isBlocking){
+            component.isBlocking = false;
+            component.animate("UnBlockAnimate", 1);
+        }else{
 
         var oldZone = component.getZone(component.playerID);
         if (oldZone < 0){
+            if (oldZone === -100)
+                component.animate("UnDodgeLeftAnimate", 1);
             component.setZone(component.playerID,-50);
-        } else {
+        } else if (oldZone === 100){
+                component.animate("UnDodgeRightAnimate", 1);
             component.setZone(component.playerID,50);
+        }else
+        {
+           component.animate("IdleAnimate", -1);
         }
-
-        //This was an attempt to make the block animation reverse, doesn't work
-        if (component.isPlaying("BlockAnimate"))
-            component.animate("UnBlockAnimate", 1);
-        else{
-            //Original return to idle block.
-            if (!component.isPlaying("UnBlockAnimate") && !component.isPlaying("IdleAnimate")) {
-                component.animate("IdleAnimate", -1);
-            }else {
-                component.resumeAnimation()
-            }
         }
         component.tween({tweenName:"noAction",rotation:0,x: gameSettings.width/2 - 500/2, y:60}, time);
     },
@@ -75,11 +81,13 @@ Crafty.c("Defense",{
             switch (props.tweenName){
                 case "dodgeLeft":
                     Crafty.trigger("dodge.end");
+                    console.log("dodgeleft");
                     //apply constant dodge cost
                     component.setZone(component.playerID,-100);
                     break;
                 case "dodgeRight":
                     //apply constant dodge cost
+                    console.log("dodgeright");
                     Crafty.trigger("dodge.end");
                     component.setZone(component.playerID,100);
                     break;
@@ -90,7 +98,7 @@ Crafty.c("Defense",{
                     break;
                 case "blockAction":
                     Crafty.trigger("block.end");
-                    //Is Blocking = true
+                    component.isBlocking = true;
                     component.setZone(component.playerID,0);
                     break;
             }
