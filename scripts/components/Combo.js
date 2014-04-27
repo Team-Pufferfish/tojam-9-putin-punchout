@@ -17,23 +17,18 @@ Crafty.c("Combo",{
 
         var defaultDef = component.getAttribute(playerID,attributeToIncreaseForDefense);
 
-        this.changeComboMultiplier = function(shouldIncrease){
+        this.setComboRole = function(isAttacker){
+            if (isAttacker){
+                component.assignAttribute(playerID,attributeToIncreaseForDefense,defaultDef);
+                adjustAttributes();
+            } else {
+                component.assignAttribute(playerID,attributeToIncreaseForOffence,defaultOff);
+                adjustAttributes();
+            }
+        };
+
+        var adjustAttributes = function(){
             var currentMultiplier = component.getAttribute(playerID,"Combo");
-            var currentOpponentMultiplier = component.getAttribute(opponentID,"Combo");
-            if (shouldIncrease){
-                if (currentOpponentMultiplier === 0){
-                    currentMultiplier++;
-                }
-
-            }
-             else {
-                if (currentMultiplier !== 0){
-                    currentMultiplier--;
-                }
-            }
-            component.assignAttribute(playerID,"Combo",currentMultiplier);
-
-
             if (component.role === component.ATTACK_ROLE){
                 console.log("attackerCombo: ",currentMultiplier);
                 var calculatedAttribute =
@@ -52,6 +47,27 @@ Crafty.c("Combo",{
 
                 console.log("New "+attributeToIncreaseForDefense+":"+calculatedAttribute);
             }
+        };
+
+        this.changeComboMultiplier = function(shouldIncrease){
+            var currentMultiplier = component.getAttribute(playerID,"Combo");
+            var currentOpponentMultiplier = component.getAttribute(opponentID,"Combo");
+            if (shouldIncrease){
+                if (currentOpponentMultiplier === 0){
+                    currentMultiplier++;
+                }
+
+            }
+             else {
+                if (currentMultiplier !== 0){
+                    currentMultiplier--;
+                }
+            }
+            component.assignAttribute(playerID,"Combo",currentMultiplier);
+
+            adjustAttributes();
+
+
         }
 
 

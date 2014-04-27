@@ -2,8 +2,8 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="504ff490-7ac0-413e-bfca-b3f3a876df24" name="Default" comment="">
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/scripts/components/Combo.js" afterPath="$PROJECT_DIR$/scripts/components/Combo.js" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/scripts/components/Player.js" afterPath="$PROJECT_DIR$/scripts/components/Player.js" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/scripts/components/Punch.js" afterPath="$PROJECT_DIR$/scripts/components/Punch.js" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
     </list>
     <list id="5f5b2cbf-2f03-4323-abd6-9646006d1c7e" name="Revert: Prevent double punches, fixed hook alignment. (88c399971bd3191bbae49442c1ed6c05fb461fa6)" comment="" />
@@ -59,11 +59,11 @@
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="Combo.js" pinned="false" current="false" current-in-tab="false">
+      <file leaf-file-name="Combo.js" pinned="false" current="true" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/scripts/components/Combo.js">
           <provider selected="true" editor-type-id="text-editor">
-            <state vertical-scroll-proportion="0.0" vertical-offset="36" max-vertical-offset="1188">
-              <caret line="36" column="25" selection-start-line="36" selection-start-column="25" selection-end-line="36" selection-end-column="25" />
+            <state vertical-scroll-proportion="0.44219652" vertical-offset="0" max-vertical-offset="1476">
+              <caret line="19" column="2" selection-start-line="19" selection-start-column="2" selection-end-line="19" selection-end-column="2" />
               <folding>
                 <element signature="e#0#43#0" expanded="false" />
               </folding>
@@ -84,8 +84,8 @@
       <file leaf-file-name="Player.js" pinned="false" current="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/scripts/components/Player.js">
           <provider selected="true" editor-type-id="text-editor">
-            <state vertical-scroll-proportion="-15.923077" vertical-offset="702" max-vertical-offset="4464">
-              <caret line="62" column="33" selection-start-line="62" selection-start-column="19" selection-end-line="62" selection-end-column="33" />
+            <state vertical-scroll-proportion="-17.307692" vertical-offset="3276" max-vertical-offset="4500">
+              <caret line="207" column="41" selection-start-line="207" selection-start-column="41" selection-end-line="207" selection-end-column="41" />
               <folding />
             </state>
           </provider>
@@ -123,10 +123,10 @@
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="Punch.js" pinned="false" current="true" current-in-tab="true">
+      <file leaf-file-name="Punch.js" pinned="false" current="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/scripts/components/Punch.js">
           <provider selected="true" editor-type-id="text-editor">
-            <state vertical-scroll-proportion="0.6216216" vertical-offset="126" max-vertical-offset="2268">
+            <state vertical-scroll-proportion="-15.923077" vertical-offset="126" max-vertical-offset="2268">
               <caret line="30" column="91" selection-start-line="30" selection-start-column="91" selection-end-line="30" selection-end-column="91" />
               <folding />
             </state>
@@ -162,11 +162,11 @@
         <option value="$PROJECT_DIR$/index.html" />
         <option value="$PROJECT_DIR$/scripts/components/Zonable.js" />
         <option value="$PROJECT_DIR$/scripts/components/Defense.js" />
-        <option value="$PROJECT_DIR$/scripts/components/Combo.js" />
         <option value="$PROJECT_DIR$/scripts/components/HitDetector.js" />
         <option value="$PROJECT_DIR$/scripts/components/Attributes.js" />
-        <option value="$PROJECT_DIR$/scripts/components/Player.js" />
         <option value="$PROJECT_DIR$/scripts/components/Punch.js" />
+        <option value="$PROJECT_DIR$/scripts/components/Player.js" />
+        <option value="$PROJECT_DIR$/scripts/components/Combo.js" />
       </list>
     </option>
   </component>
@@ -559,7 +559,11 @@
       <created>1398573657477</created>
       <updated>1398573657477</updated>
     </task>
-    <option name="localTasksCounter" value="10" />
+    <task id="LOCAL-00010" summary="blocking mitigation now governed by player stats">
+      <created>1398573893388</created>
+      <updated>1398573893388</updated>
+    </task>
+    <option name="localTasksCounter" value="11" />
     <servers />
   </component>
   <component name="ToolWindowManager">
@@ -629,24 +633,15 @@
     <MESSAGE value="added in a max value for stamina/autoIncrementors" />
     <MESSAGE value="finished combo system" />
     <MESSAGE value="added in blocking mechanism" />
-    <option name="LAST_COMMIT_MESSAGE" value="added in blocking mechanism" />
+    <MESSAGE value="blocking mitigation now governed by player stats" />
+    <option name="LAST_COMMIT_MESSAGE" value="blocking mitigation now governed by player stats" />
   </component>
   <component name="XDebuggerManager">
     <breakpoint-manager>
       <breakpoints>
         <line-breakpoint enabled="true" type="javascript">
           <url>file://$PROJECT_DIR$/scripts/components/Player.js</url>
-          <line>219</line>
-        </line-breakpoint>
-        <line-breakpoint enabled="true" type="javascript">
-          <url>file://$PROJECT_DIR$/scripts/components/Combo.js</url>
-          <line>38</line>
-          <option name="timeStamp" value="13" />
-        </line-breakpoint>
-        <line-breakpoint enabled="true" type="javascript">
-          <url>file://$PROJECT_DIR$/scripts/components/Combo.js</url>
-          <line>47</line>
-          <option name="timeStamp" value="14" />
+          <line>220</line>
         </line-breakpoint>
       </breakpoints>
       <option name="time" value="15" />
@@ -863,16 +858,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/scripts/components/Combo.js">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.0" vertical-offset="36" max-vertical-offset="1188">
-          <caret line="36" column="25" selection-start-line="36" selection-start-column="25" selection-end-line="36" selection-end-column="25" />
-          <folding>
-            <element signature="e#0#43#0" expanded="false" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/scripts/components/Graphics.js">
       <provider selected="true" editor-type-id="text-editor">
         <state vertical-scroll-proportion="0.0" vertical-offset="0" max-vertical-offset="450">
@@ -905,19 +890,29 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/scripts/components/Player.js">
+    <entry file="file://$PROJECT_DIR$/scripts/components/Punch.js">
       <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="-15.923077" vertical-offset="702" max-vertical-offset="4464">
-          <caret line="62" column="33" selection-start-line="62" selection-start-column="19" selection-end-line="62" selection-end-column="33" />
+        <state vertical-scroll-proportion="-15.923077" vertical-offset="126" max-vertical-offset="2268">
+          <caret line="30" column="91" selection-start-line="30" selection-start-column="91" selection-end-line="30" selection-end-column="91" />
           <folding />
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/scripts/components/Punch.js">
+    <entry file="file://$PROJECT_DIR$/scripts/components/Player.js">
       <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.6216216" vertical-offset="126" max-vertical-offset="2268">
-          <caret line="30" column="91" selection-start-line="30" selection-start-column="91" selection-end-line="30" selection-end-column="91" />
+        <state vertical-scroll-proportion="-17.307692" vertical-offset="3276" max-vertical-offset="4500">
+          <caret line="207" column="41" selection-start-line="207" selection-start-column="41" selection-end-line="207" selection-end-column="41" />
           <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/scripts/components/Combo.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.44219652" vertical-offset="0" max-vertical-offset="1476">
+          <caret line="19" column="2" selection-start-line="19" selection-start-column="2" selection-end-line="19" selection-end-column="2" />
+          <folding>
+            <element signature="e#0#43#0" expanded="false" />
+          </folding>
         </state>
       </provider>
     </entry>

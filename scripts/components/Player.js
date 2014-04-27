@@ -205,6 +205,7 @@ Crafty.c("Player",{
         this.role = this.role === this.ATTACK_ROLE ? this.DEFEND_ROLE : this.ATTACK_ROLE;
             this.input_locked = true;
             if (this.role === this.DEFEND_ROLE) {
+                this.setComboRole(false);
                 //tween glove2 return right
                 this.righty.tween({tweenName: "rightShiftOut", rotation: 0, x: gameSettings.width - 400 + 1000, y: gameSettings.height - 400}, time);
                 //tween glove2 return right
@@ -220,6 +221,7 @@ Crafty.c("Player",{
             }
 
             if (this.role=== this.ATTACK_ROLE) {
+                this.setComboRole(true);
                 this.righty.punch_out = 0;
                 this.lefty.punch_out = 0;
                 this.lefty.animate("PunchInAnimate",1);
