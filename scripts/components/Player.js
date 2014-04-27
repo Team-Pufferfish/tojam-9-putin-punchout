@@ -3,7 +3,7 @@
  */
 Crafty.c("Player",{
    init: function(){
-       this.requires('LRController,Attributes,Graphics,Zonable,Defense,Punch');
+       this.requires('LRController,Attributes,Graphics,Zonable,Defense,Punch,Combo');
    },
 
    ATTACK_ROLE: 0,
@@ -37,19 +37,19 @@ Crafty.c("Player",{
                .attr({rotation: 0, x: gameSettings.width / 2 - 500 / 2 + component.role * 1000 - 1000, y: 60, z: 0})
                .origin("center")
                .animate("IdleAnimate", -1)
-               .setCallbacks()
+               .setDefenderCallbacks()
                .attr("playerID", attr.ID);
            component.lefty = Crafty.e('Graphics, Punch, BoxingGlove,' + attr.GloveSpriteName)
                .attr({punch_out: 0, rotation: 0, x: -50 + component.role * 1000, y: gameSettings.height - 400, z: 100})
                .flip("X")
                .origin("center")
                .setPunchAnimation(true)
-               .setCallbacks();
+               .setPunchCallbacks();
            component.righty = Crafty.e('Graphics, Punch, BoxingGlove,' + attr.GloveSpriteName)
                .attr({punch_out: 0, rotation: 0, x: gameSettings.width - 400 + component.role * 1000, y: gameSettings.height - 400, z: 100})
                .origin("center")
                .setPunchAnimation(true)
-               .setCallbacks();
+               .setPunchCallbacks();
        }
 
        function setupStats(){
@@ -75,12 +75,38 @@ Crafty.c("Player",{
        setupSprites();
        setupStats();
        setupOffensiveStamina();
+       setupCombo();
+
+       function setupCombo(){
+
+           component.setupCombo(attr.ID,attr.opponentID,"StaminaRegenRate","PunchStrength",5,10);
+           function trigger(e){
+
+                if (e.result === component.PUNCH_HIT){
+                   component.changeComboMultiplier(true);
+               } else if (e.result === component.PUNCH_MISS){
+                   component.changeComboMultiplier(false);
+               }
+           }
+           component.lefty.bind("punch.end",trigger);
+           component.righty.bind("punch.end",trigger);
+
+           Crafty.bind("punch.miss",function(){
+               if (component.role === component.DEFEND_ROLE)
+                   component.changeComboMultiplier(true);
+           });
+
+           Crafty.bind("punch.hit",function(){
+               if (component.role === component.DEFEND_ROLE)
+                   component.changeComboMultiplier(false);
+           });
+       }
 
        function setupOffensiveStamina() {
 
 
            component.createAttributeAutoIncrementor(attr.ID,"CurrentStamina",
-               component.getAttribute(attr.ID,"StaminaRegenRate"),
+               "StaminaRegenRate",
                 component.getAttribute(attr.ID,"MaxStamina"));
            component.runAutoIncrementorLoop(500);
 

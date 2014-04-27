@@ -58,7 +58,7 @@ Crafty.c("Attributes",{
                 var inc = component.autoIncrementors[i];
                 if (!inc.pause){
                     var currentValue = component.getAttribute(inc.ID,inc.attributeName);
-                    var finalValue = currentValue + inc.incrementValue;
+                    var finalValue = currentValue + component.getAttribute(inc.ID,inc.incrementValue);
 
                     if (finalValue > inc.maxValue){
                         finalValue = inc.maxValue;
@@ -71,13 +71,13 @@ Crafty.c("Attributes",{
         },delay,-1);
     },
 
-    createAttributeAutoIncrementor: function(ID,attributeName,incrementValue, maxValue){
+    createAttributeAutoIncrementor: function(ID,attributeName,incrementAttribute, maxValue){
 
 
         this.autoIncrementors.push({
             ID: ID,
             attributeName: attributeName,
-            incrementValue: incrementValue,
+            incrementValue: incrementAttribute,
             maxValue: maxValue,
             pause:false
         });

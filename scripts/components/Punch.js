@@ -17,7 +17,7 @@ Crafty.c("Punch",{
         this.ShouldAnimate = shouldAnimate;
         return this;
     },
-    setCallbacks: function() {
+    setPunchCallbacks: function() {
         var component = this;
         //on end animation call this
         component.bind("punch.ending",function(e){
@@ -36,6 +36,12 @@ Crafty.c("Punch",{
                 damage: hitPercent * e.strength,
                 result: result
             });
+
+            if (result === 0){
+                Crafty.trigger("punch.miss");
+            } else {
+                Crafty.trigger("punch.hit");
+            }
         });
 
         component.bind("TweenEnd", function(props) {

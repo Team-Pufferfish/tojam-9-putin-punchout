@@ -1,6 +1,6 @@
 Crafty.c("Defense",{
     init: function(){
-        this.requires('2D, Tween, Zonable');
+        this.requires('2D, Tween, Zonable, Punch');
     },
     Dodge: function(playerID, direction,time) {
         var component = this;
@@ -68,9 +68,10 @@ Crafty.c("Defense",{
     },
     setDodgeAnimation: function(leftAnimation, rightAnimation){
     },
-    setCallbacks: function(){
+    setDefenderCallbacks: function(){
         var component = this;
         component.bind("TweenEnd", function(props) {
+            console.log('here');
             switch (props.tweenName){
                 case "dodgeLeft":
                     Crafty.trigger("dodge.end");
