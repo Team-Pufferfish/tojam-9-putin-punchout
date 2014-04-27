@@ -233,15 +233,15 @@ Crafty.c("Player",{
 
        component.bind("defender.stunned",function(){
            if (component.role === component.DEFEND_ROLE){
-               console.log("stunned");
                component.input_locked = true;
+               component.body.StunPlayer(attr.ID,300);
            }
        });
 
        component.bind("defender.stunRelease",function(){
            if (component.role === component.DEFEND_ROLE){
                component.input_locked = false;
-               console.log("stun broken");
+               //component.body.GoNeutral(1, 300);
            }
        });
 
