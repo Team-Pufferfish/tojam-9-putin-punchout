@@ -45,7 +45,7 @@ Crafty.c("StaminaBar",{
 
             //DRAW A REC THAT"S (STAM/MAXSTAM) * 0.9 * DRAWWIDTH and 0.9 * MAXHEIGHT tall start at 0.05 * MAX WIDTH
             var drawRatio  = currentStamina/maxStamina;
-            inner.attr({w:outer.w*0.9*drawRatio});
+            inner.attr({w:outer.w*drawRatio - (drawWidth * 0.1)});
         }
 
         return component;
