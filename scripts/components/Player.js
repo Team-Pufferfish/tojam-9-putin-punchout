@@ -60,7 +60,12 @@ Crafty.c("Player",{
                    TotalStamina: 1000,
                    StaminaRegenRate: 5,
                    PunchStrength: 50,
-                   BlockMitigator: 0.2
+                   BlockMitigator: 0.2,
+                   DefensiveComboRate: 5,
+                   OffensiveComboRate: 10,
+                   DefensiveComboStat: "StaminaRegenRate",
+                   OffensiveComboStat: "PunchStrength"
+
 
                };
                //stuff here for created characters
@@ -80,7 +85,11 @@ Crafty.c("Player",{
 
        function setupCombo(){
 
-           component.setupCombo(attr.ID,attr.opponentID,"StaminaRegenRate","PunchStrength",5,10);
+           component.setupCombo(attr.ID,attr.opponentID,
+               component.getAttribute(attr.ID,"DefensiveComboStat"),
+               component.getAttribute(attr.ID,"OffensiveComboStat"),
+               component.getAttribute(attr.ID,"DefensiveComboRate"),
+               component.getAttribute(attr.ID,"OffensiveComboRate"));
            function trigger(e){
 
                 if (e.result === component.PUNCH_HIT){
@@ -207,6 +216,7 @@ Crafty.c("Player",{
             this.input_locked = true;
             //this.changeAttribute(this.playerID,"CurrentStamina", component.getAttribute(component.playerID,"MaxStamina"));
             if (this.role === this.DEFEND_ROLE) {
+                this.setComboRole(false);
                 //tween glove2 return right
                 this.righty.tween({tweenName: "rightShiftOut", rotation: 0, x: gameSettings.width - 400 + 1000, y: gameSettings.height - 400}, time);
                 //tween glove2 return right
@@ -222,6 +232,7 @@ Crafty.c("Player",{
             }
 
             if (this.role=== this.ATTACK_ROLE) {
+                this.setComboRole(true);
                 this.righty.punch_out = 0;
                 this.lefty.punch_out = 0;
                 this.lefty.animate("PunchInAnimate",1);
