@@ -51,6 +51,7 @@ Crafty.c("Defense",{
         Crafty.trigger("block.release");
         Crafty.trigger("dodge.release");
         //Remove constant dodge cost
+
         if (component.isBlocking){
             component.isBlocking = false;
             component.animate("UnBlockAnimate", 1);
@@ -70,6 +71,16 @@ Crafty.c("Defense",{
         }
         }
         component.tween({tweenName:"noAction",rotation:0,x: gameSettings.width/2 - 500/2, y:60}, time);
+    },
+    StunPlayer: function(playerID, time){
+        var component = this;
+        console.log("stun animation start");
+        Crafty.trigger("block.release");
+        Crafty.trigger("dodge.release");
+        component.setZone(component.playerID,0);
+        component.animate("StunAnimate", 1);
+
+        component.tween({tweenName:"stunned",rotation:0,x: gameSettings.width/2 - 500/2, y:60}, time);
     },
     KillPlayer: function(playerID, time){
         var component = this;

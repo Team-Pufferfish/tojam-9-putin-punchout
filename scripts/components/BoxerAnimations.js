@@ -2,6 +2,7 @@
 Crafty.c("Boxer", {
     init: function () {
             this.reel('IdleAnimate',1000, [[0, 0], [1, 0], [2, 0], [3, 0],[0,1]])
+            .reel('StunAnimate',200, [[0, 0], [1, 0], [2, 0]])
             .reel('BlockAnimate',300, [[1, 1], [2, 1], [3, 1]])
             .reel('UnBlockAnimate',300, [[3, 1], [2, 1], [1, 1]])
             .reel('DodgeRightAnimate',300, [[0, 2],[1, 2],[2, 2],[3,2]])
