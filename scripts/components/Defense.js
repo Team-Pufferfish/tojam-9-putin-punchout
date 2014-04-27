@@ -115,6 +115,12 @@ Crafty.c("Defense",{
                     component.animate("IdleAnimate", -1);
                     component.setZone(component.playerID,0);
                     break;
+                case "stunned":
+                    //Crafty.trigger("block.release"); redundant
+                    //Crafty.trigger("dodge.release");
+                    component.GoNeutral(component.playedID,300);
+                    component.setZone(component.playerID,0);
+                    break;
                 case "blockAction":
                     Crafty.trigger("block.end");
                     component.isBlocking = true;

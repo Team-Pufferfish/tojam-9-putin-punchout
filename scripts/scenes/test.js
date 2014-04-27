@@ -13,7 +13,7 @@ Crafty.scene('newTesting',function(){
 
 
     //Background Layer
-    Crafty.e("Graphics").image("background_day.png");
+    var bg = Crafty.e("Graphics").image("backgroundlayout.png");
 
     //Initialize Players
     var player1 = Crafty.e("Player").setup({
@@ -42,7 +42,10 @@ Crafty.scene('newTesting',function(){
     gameController.bind("gamecontrol.ButtonComplete",function(change) {
         player1.swapRole(1000);
         player2.swapRole(1000);
+        SwapBackground(bg);
     });
+
+
 
     Crafty.bind("combo.change",function(e){
         console.log(JSON.stringify(e));
