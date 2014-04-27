@@ -59,7 +59,8 @@ Crafty.c("Player",{
                    CurrentStamina: 1000,
                    TotalStamina: 1000,
                    StaminaRegenRate: 5,
-                   PunchStrength: 50
+                   PunchStrength: 50,
+                   BlockMitigator: 0.2
 
                };
                //stuff here for created characters

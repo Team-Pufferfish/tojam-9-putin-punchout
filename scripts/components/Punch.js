@@ -3,7 +3,7 @@
  */
 Crafty.c("Punch",{
     init: function(){
-        this.requires("HitDetector,Zonable");
+        this.requires("HitDetector,Zonable,Attributes");
     },
     STRAIGHT: 25,
     HOOK: 100,
@@ -28,7 +28,7 @@ Crafty.c("Punch",{
             var strength = e.strength;
             if (hitStats.result === "blocked"){
                 result = component.PUNCH_BLOCK;
-                strength = e.strength * 0.5;
+                strength = e.strength * component.getAttribute(e.defenderID,"BlockMitigator");
             }
 
 
