@@ -69,4 +69,15 @@ Crafty.c("BoxingGlove", {
              //tween glove2 return right
              fistl1.tween({tweenName: "leftShiftBack", rotation: 0, x: -50, y: gameSettings.height - 400}, time);
          }
-     }
+     };
+
+var bg_direction = 0;
+var SwapBackground = function(background){
+    if (bg_direction === 0){
+        background.tween({tweenName:"backgroundShift", x: - 2046},1000);
+        bg_direction = 1;
+    }else if (bg_direction === 1){
+        background.tween({tweenName:"backgroundShift", x: 0},1000);
+        bg_direction = 0;
+    }
+}
