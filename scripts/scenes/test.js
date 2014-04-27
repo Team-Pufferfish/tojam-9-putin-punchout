@@ -39,11 +39,6 @@ Crafty.scene('newTesting',function(){
 
     player2.setZone("Player2",0);
 
-    gameController.bind("gamecontrol.ButtonComplete",function(change) {
-        player1.swapRole(1000);
-        player2.swapRole(1000);
-        SwapBackground(bg);
-    });
 
 
 
@@ -58,6 +53,23 @@ Crafty.scene('newTesting',function(){
     //    .textColor('#FFFFFF', 1.0)
       //  .textFont({ size: '32px', family:"Arial", weight: 'bold' });
 
+    var roundTime = 15;
+
+    var roundTimer = Crafty.e("RoundTimer")
+        .initRoundTimer()
+        .resetRoundTimer(roundTime);
+
+    Crafty.bind("RoundEnd",function() {
+
+        roundTimer.resetRoundTimer(roundTime + 1);
+
+        player1.swapRole(1000);
+        player2.swapRole(1000);
+
+        //uncomment this at some point for round bells.
+        //Crafty.audio.play('roundBell',1,0.7);
+
+    });
     Crafty.e("StaminaBar").setup({
         playerID: "Player1",
         topX: 50,
