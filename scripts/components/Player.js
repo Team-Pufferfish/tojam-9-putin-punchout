@@ -60,7 +60,12 @@ Crafty.c("Player",{
                    TotalStamina: 1000,
                    StaminaRegenRate: 5,
                    PunchStrength: 50,
-                   BlockMitigator: 0.2
+                   BlockMitigator: 0.2,
+                   DefensiveComboRate: 5,
+                   OffensiveComboRate: 10,
+                   DefensiveComboStat: "StaminaRegenRate",
+                   OffensiveComboStat: "PunchStrength"
+
 
                };
                //stuff here for created characters
@@ -80,7 +85,11 @@ Crafty.c("Player",{
 
        function setupCombo(){
 
-           component.setupCombo(attr.ID,attr.opponentID,"StaminaRegenRate","PunchStrength",5,10);
+           component.setupCombo(attr.ID,attr.opponentID,
+               component.getAttribute(attr.ID,"DefensiveComboStat"),
+               component.getAttribute(attr.ID,"OffensiveComboStat"),
+               component.getAttribute(attr.ID,"DefensiveComboRate"),
+               component.getAttribute(attr.ID,"OffensiveComboRate"));
            function trigger(e){
 
                 if (e.result === component.PUNCH_HIT){
