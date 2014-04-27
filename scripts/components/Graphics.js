@@ -13,9 +13,10 @@ Crafty.c("Graphics", {
             //Graphics
             Crafty.sprite(480,550,"./animations/harper_punch.png", {HarperFist:[0,0]});
             Crafty.sprite(480,550,"./animations/putin_punch.png", {PutinFist:[0,0]});
-            Crafty.sprite(500,540, "./animations/putin_fullset.png", {PutinSprite: [0,0]});
-            Crafty.sprite(500,540, "./animations/harper_fullset.png", {HarperSprite: [0,0]});
+            Crafty.sprite(500,541, "./animations/putin_fullset.png", {PutinSprite: [0,0]});
+            Crafty.sprite(500,541, "./animations/harper_fullset.png", {HarperSprite: [0,0]});
 
+            //Crafty.sprite(100,100,"./animations/blood.png", {BloodSplat:[0,0]});
         }
     }
 );
