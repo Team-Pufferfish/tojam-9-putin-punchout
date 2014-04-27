@@ -3,6 +3,8 @@ Crafty.c("Defense",{
         this.requires('2D, Tween, Zonable, Punch,SoundsEffect');
     },
     Dodge: function(playerID, direction,time) {
+
+        Crafty.trigger("block.release");
         var component = this;
         //Apply Cost for Dodging
         component.pauseAnimation();

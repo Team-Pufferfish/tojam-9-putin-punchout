@@ -93,7 +93,8 @@ Crafty.c("Punch",{
 
         function Throw(){
 
-            Crafty.audio.play('punchSwoosh',1,0.3);
+            var swooshVolume = punchType === component.HOOK ? 1.0 : 0.3;
+            Crafty.audio.play('punchSwoosh',1,swooshVolume);
 
             component.trigger("punch.start",{
                 type: punchType,
