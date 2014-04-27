@@ -25,17 +25,25 @@ Crafty.c("Combo",{
                 component.assignAttribute(playerID,attributeToIncreaseForOffence,defaultOff);
                 adjustAttributes();
             }
+
         };
 
         var adjustAttributes = function(){
             var currentMultiplier = component.getAttribute(playerID,"Combo");
             if (component.role === component.ATTACK_ROLE){
+
                 console.log("attackerCombo: ",currentMultiplier);
                 var calculatedAttribute =
                     defaultOff +
                     OffRate * currentMultiplier;
                 component.assignAttribute(playerID,attributeToIncreaseForOffence,calculatedAttribute);
                 console.log("New "+attributeToIncreaseForOffence+":"+calculatedAttribute);
+
+                    Crafty.trigger("combo.change",{
+                        attackerMultiplier: currentMultiplier,
+                        defenderMultiplier: component.getAttribute(opponentID,"Combo")
+                    });
+
 
 
             } else {
@@ -47,6 +55,7 @@ Crafty.c("Combo",{
 
                 console.log("New "+attributeToIncreaseForDefense+":"+calculatedAttribute);
             }
+
         };
 
         this.changeComboMultiplier = function(shouldIncrease){

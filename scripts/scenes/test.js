@@ -44,6 +44,12 @@ Crafty.scene('newTesting',function(){
         player2.swapRole(1000);
     });
 
+
+    Crafty.bind("combo.change",function(e){
+        console.log(JSON.stringify(e));
+    })
+
+
     //Draw UI
     Crafty.e("Graphics").image("gui_layout_test.png");
     Crafty.e("2D, DOM, Text").attr({ x: gameSettings.width/2-(41), y: 8 }).text('00:00')
