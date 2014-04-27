@@ -39,13 +39,10 @@ Crafty.scene('newTesting',function(){
 
     player2.setZone("Player2",0);
 
-
-
-
-    Crafty.bind("combo.change",function(e){
-        console.log(JSON.stringify(e));
-    })
-
+    var splatEffectRight = Crafty.e("Splat");
+    splatEffectRight.setUp(-1);
+    var splatEffectLeft = Crafty.e("Splat").flip("X");
+    splatEffectLeft.setUp(1);
 
     //Draw UI
     //Crafty.e("Graphics").image("gui_layout_test.png");

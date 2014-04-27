@@ -16,8 +16,7 @@ Crafty.c("Graphics", {
             Crafty.sprite(500,541, "./animations/putin_fullset.png", {PutinSprite: [0,0]});
             Crafty.sprite(500,541, "./animations/harper_fullset.png", {HarperSprite: [0,0]});
 
-            //Crafty.sprite(100,100,"./animations/blood.png", {BloodSplat:[0,0]});
+            Crafty.sprite(100,100,"./animations/splatters.png", {BloodSplat:[0,0]});
         }
     }
 );
-

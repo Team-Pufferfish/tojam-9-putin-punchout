@@ -30,16 +30,34 @@ Crafty.c("Punch",{
                 result = component.PUNCH_BLOCK;
                 strength = e.strength * component.getAttribute(e.defenderID,"BlockMitigator");
             }
-
-            if (hitStats.hitPercent >= .75 && hitStats.result !== "blocked"){
-
+            if (hitStats.hitPercent === 1.0 && hitStats.result !== "blocked"){
+                Crafty.trigger("Game.splatter"+e.hand,{
+                    x: gameSettings.width/2 + (250  * e.hand) -50,
+                    y: 200,
+                    reelName: "BloodSplatter",
+                    hand: e.hand
+                });
+                Crafty.audio.play('hardPunch',1,0.3);
+            }
+            else if (hitStats.hitPercent >= .75 && hitStats.result !== "blocked"){
+                Crafty.trigger("Game.splatter"+e.hand,{
+                        x: gameSettings.width/2 + (45  * e.hand) -50,
+                        y: 170,
+                        reelName: "BloodSplatter",
+                        hand: e.hand
+                });
                 Crafty.audio.play('hardPunch',1,0.3);
             } else if (hitStats.result !== "missed"){
-
+                Crafty.trigger("Game.splatter"+e.hand,{
+                    x: gameSettings.width/2 + (250  * e.hand) -50,
+                    y: 200,
+                    reelName: "SweatSplatter",
+                    hand: e.hand
+                });
                 Crafty.audio.play('softPunch',1,0.7);
             }
 
-            console.log("punch result: ",result, " damage: ",hitStats.hitPercent * strength);
+            //console.log("punch result: ",result, " damage: ",hitStats.hitPercent * strength);
 
             //Substract stamina from attacker bsed on hit or miss
 
