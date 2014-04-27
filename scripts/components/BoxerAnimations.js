@@ -6,6 +6,8 @@ Crafty.c("Boxer", {
             .reel('UnBlockAnimate',300, [[3, 1], [2, 1], [1, 1]])
             .reel('DodgeRightAnimate',300, [[0, 2],[1, 2],[2, 2],[3,2]])
             .reel('DodgeLeftAnimate',300, [[3,3],[2, 3],[1, 3],[0, 3]])
+             .reel('DieAnimate',300, [[3,3],[2, 3],[1, 3],[0, 3]])
+            //.reel('DieAnimate',500, [[3,2],[3,2],[0, 3],[0, 3],[3,2],[3,2],[0, 3],[0, 3]])
             .reel('UnDodgeRightAnimate',300, [[3,2],[2, 2],[1, 2],[0, 2]])
             .reel('UnDodgeLeftAnimate',300, [[0, 3],[1, 3],[2, 3],[3,3]])
             .reel('UnDodgeRightBlockAnimate',300, [[3,2],[2, 2],[1, 2],[0, 2],[1, 1], [2, 1], [3, 1]])

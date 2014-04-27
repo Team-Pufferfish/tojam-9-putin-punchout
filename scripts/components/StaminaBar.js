@@ -27,7 +27,7 @@ Crafty.c("StaminaBar",{
             .color("#666666").attr({w:drawWidth, h:drawHeight,x:attr.topX, y:attr.topY});
 
         var inner = Crafty.e("2D, DOM, Color")
-            .color("#FFFFFF").attr({w:drawWidth*0.9, h:drawHeight*0.6,x:attr.topX + drawWidth * 0.05, y:attr.topY + drawHeight * 0.2});
+            .color(attr.colour).attr({w:drawWidth*0.9, h:drawHeight*0.6,x:attr.topX + drawWidth * 0.05, y:attr.topY + drawHeight * 0.2});
 
         component.bind(attr.playerID + ".attribute.changed", function(change){
            if(change.name === "MaxStamina" || change.name === "CurrentStamina"){

@@ -191,6 +191,7 @@ Crafty.c("Player",{
                    component.body.Dodge(1, "right", 300);
                } else if (change.newButtons === component.BOTH_BUTTONS) {
                    component.body.Block(1, 300)
+                  // component.body.KillPlayer(1,1000);
                } else if (change.newButtons === component.NO_BUTTON) {
                    component.body.GoNeutral(1, 300);
                } else {

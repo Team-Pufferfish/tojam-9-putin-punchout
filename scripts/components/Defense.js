@@ -28,7 +28,7 @@ Crafty.c("Defense",{
         Crafty.trigger("block.start");
         //defender.cancelTween();
         component.pauseAnimation();
-        component.reelPosition(0);
+        //component.reelPosition(0);
         if (!component.isPlaying("BlockAnimate")&&!component.isPlaying("UnDodgeRightBlockAnimate")) {
             if (component.getZone(component.playerID) === 100) {
                 component.animate("UnDodgeRightBlockAnimate", 1);
@@ -68,11 +68,15 @@ Crafty.c("Defense",{
         }
         component.tween({tweenName:"noAction",rotation:0,x: gameSettings.width/2 - 500/2, y:60}, time);
     },
-    setNeutralAnimation : function(animationReel){
-    },
-    setBlockAnimation: function(animationReel) {
-    },
-    setDodgeAnimation: function(leftAnimation, rightAnimation){
+    KillPlayer: function(playerID, time){
+        var component = this;
+        Crafty.trigger("block.start");
+        //defender.cancelTween();
+        component.pauseAnimation();
+        //component.reelPosition(0);
+      component.animate("DieAnimate", 1);
+
+        component.tween({tweenName:"dieAction",rotation:25,x:component.x, y:700}, time);
     },
     setDefenderCallbacks: function(){
         var component = this;
@@ -94,6 +98,7 @@ Crafty.c("Defense",{
                 case "noAction":
                     //Crafty.trigger("block.release"); redundant
                     //Crafty.trigger("dodge.release");
+                    component.animate("IdleAnimate", -1);
                     component.setZone(component.playerID,0);
                     break;
                 case "blockAction":

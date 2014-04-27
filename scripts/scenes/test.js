@@ -53,13 +53,15 @@ Crafty.scene('newTesting',function(){
     Crafty.e("StaminaBar").setup({
         playerID: "Player1",
         topX: 50,
-        topY: 20
+        topY: 20,
+        colour: "#FF0000"
     });
 
     Crafty.e("StaminaBar").setup({
         playerID: "Player2",
         topX: gameSettings.width - 250,
-        topY: 20
+        topY: 20,
+        colour: "#FFFFFF"
     });
 });
 
