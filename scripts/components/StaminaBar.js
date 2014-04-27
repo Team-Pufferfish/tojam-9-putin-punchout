@@ -23,10 +23,11 @@ Crafty.c("StaminaBar",{
         //component.topX = attr.topX;
        // component.topY = attr.topY;
 
-        var outer = Crafty.e("2D, DOM, Color")
+        var outer = Crafty.e("2D, DOM, Color, Image")
+            .image("./gui/statusbar.png")
             .color("#666666").attr({w:drawWidth, h:drawHeight,x:attr.topX, y:attr.topY});
 
-        var inner = Crafty.e("2D, DOM, Color")
+        var inner = Crafty.e("2D, DOM, Color, Image")
             .color(attr.colour).attr({w:drawWidth*0.9, h:drawHeight*0.6,x:attr.topX + drawWidth * 0.05, y:attr.topY + drawHeight * 0.2});
 
         component.bind(attr.playerID + ".attribute.changed", function(change){

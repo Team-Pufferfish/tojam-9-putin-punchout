@@ -100,7 +100,7 @@ Crafty.c("Player",{
                    MaxStamina : 1000,
                    CurrentStamina: 1000,
                    TotalStamina: 1000,
-                   StaminaRegenRate: 30,
+                   StaminaRegenRate: 40,
                    PunchStrength: 150,
                    BlockMitigator: 0.2,
                    DefensiveComboRate: 5,
@@ -271,15 +271,15 @@ Crafty.c("Player",{
        component.input_locked = false;
 
        component.bind(attr.ID+".ButtonComplete",function(change) {
-           if (component.role === component.ATTACK_ROLE && !component.input_locked) {
+           if (component.role === component.ATTACK_ROLE && !component.input_locked && (component.getAttribute(attr.ID,"CurrentStamina") > 100 || component.getAttribute(attr.ID,"MaxStamina") < 100)) {
                if (change.button === component.LEFT_BUTTON && component.lefty.punch_out === 0 && component.righty.punch_out != 2) {
-                   if (change.timeHeld <= 350) {
+                   if (change.timeHeld <= 250) {
                        component.lefty.ThrowPunch(attr.ID, attr.opponentID, component.lefty.STRAIGHT, component.lefty.LEFT_PUNCH, 0, component.getAttribute(attr.ID,"PunchStrength"));
                    } else {
                        component.lefty.ThrowPunch(attr.ID, attr.opponentID, component.lefty.HOOK, component.lefty.LEFT_PUNCH, 0, component.getAttribute(attr.ID,"PunchStrength"));
                    }
                } else if (change.button === component.RIGHT_BUTTON && component.righty.punch_out === 0 && component.lefty.punch_out != 2) {
-                   if (change.timeHeld <= 350) {
+                   if (change.timeHeld <= 250) {
                        component.righty.ThrowPunch(attr.ID, attr.opponentID, component.righty.STRAIGHT, component.righty.RIGHT_PUNCH, 0, component.getAttribute(attr.ID,"PunchStrength"));
                    } else {
                        component.righty.ThrowPunch(attr.ID, attr.opponentID, component.righty.HOOK, component.righty.RIGHT_PUNCH, 0, component.getAttribute(attr.ID,"PunchStrength"));

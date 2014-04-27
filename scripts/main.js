@@ -12,11 +12,13 @@ window.addEventListener('load', function(){
     {
         Crafty.init(Crafty.DOM.window.width,Crafty.DOM.window.height);
     } else {
-        Crafty.init(gameSettings.width, gameSettings.height);
+        Crafty.init(gameSettings.width, gameSettings.height,document.getElementById('game'));
+        Crafty.pixelart(true);
+
     }
 
     Crafty.background('green');
 
     // Simply start the "Loading" scene to get things going
-    Crafty.scene('newTesting');
+    Crafty.scene('IntroScene');
 });

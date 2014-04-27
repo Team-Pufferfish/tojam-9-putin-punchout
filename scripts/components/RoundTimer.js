@@ -12,11 +12,11 @@ Crafty.c("RoundTimer", {
     initRoundTimer: function () {
         var component = this;
 
-        component.attr({ x: gameSettings.width/2-(41), y: 8 })
+        component.attr({ x: gameSettings.width/2-(20), y: 8 })
             .text('00:00')
             .textColor('#FFFFFF', 1.0)
-            .textFont({ size: '32px', family:"Arial", weight: 'bold' });
-
+            .textFont({ size: '32px', family:"Arial", weight: 'bold' })
+            .css({'text-align': 'center', 'min-width':'40px'});
         component.assignAttribute("Game","Timer",15);
 
 

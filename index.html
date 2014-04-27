@@ -4,9 +4,40 @@
     <meta charset="UTF-8">
     <title></title>
 
+    <style>
+
+
+        #game {
+            margin: 0 auto;
+        }
+        .instructions {
+            margin: 0 auto;
+            font-size: 12px;
+        }
+        p {
+            margin-top: 2px;
+            margin-bottom: 2px;
+        }
+        h3 {
+            margin-top: 2px;
+            margin-bottom: 2px;
+        }
+    </style>
+
 </head>
 <body>
+<div class="instructions">
+    <p>Press <b>both buttons</b> to start.</p>
+    <p>On the left is your combo meter. for offense it'll improve your power. on defence it'll improve your stamina regen. If your current stamina runs
+    low you'll get stunned. if you run out of your main stamina you lose!</p>
 
+    <h3>On offence:</h3>
+    <p>Tap to throw a straight or Hold and release to throw a hook.</p>
+
+    <h3>On defence: </h3>
+    <p>Hold both to block, or one direction to dodge.</p>
+</div>
+<div id="game"></div>
 <script src="bower_components/jQuery/dist/jquery.js"></script>
 <script src="bower_components/underscore/underscore.js"></script>
 <script src="bower_components/crafty/dist/crafty.js"></script>

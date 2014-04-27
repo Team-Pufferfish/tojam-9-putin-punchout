@@ -67,15 +67,15 @@ Crafty.c("Punch",{
             });
 
             if (result === component.PUNCH_MISS){
-                component.changeAttribute(e.playerID,"CurrentStamina", -100);
+                component.changeAttribute(e.playerID,"CurrentStamina", -200);
                 Crafty.trigger("punch.miss");
             } else if (result === component.PUNCH_BLOCK){
-                component.changeAttribute(e.playerID,"CurrentStamina", -20);
+                component.changeAttribute(e.playerID,"CurrentStamina", -50);
                 Crafty.trigger("punch.block");
                 console.log("was blocked");
             }
             else {
-                component.changeAttribute(e.playerID,"CurrentStamina", -30);
+                component.changeAttribute(e.playerID,"CurrentStamina", -100);
                 Crafty.trigger("punch.hit");
             }
         });

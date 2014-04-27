@@ -2,6 +2,17 @@
  * Created by myabko on 2014-04-21.
  */
 
+var buttons = {
+    player1: {
+        l: 'X',
+        r: 'C'
+    },
+    player2: {
+        l: 'I',
+        r: 'K'
+    }
+}
+
 Crafty.scene('winScene',function(attr){
     //Background Layer
     var bg = Crafty.e("Graphics").image("backgroundlayout.png");
@@ -13,25 +24,56 @@ Crafty.scene('winScene',function(attr){
         .textFont({ size: '60px', family:"Arial", weight: 'bold' });
 
     if (attr.deadPlayer === "Player1"){
-        t.text("Harper WINS!");
+        Crafty.e("Graphics").image("./gui/harper_win.png");
     } else {
-        t.text("Putin WINS!");
+        Crafty.e("Graphics").image("./gui/putin_win.png");
     }
 
     Crafty.e("Delay").delay(function(){
-        Crafty.scene("IntroScene");
+        location.reload();
     },3000,1);
 
 
 });
 
 Crafty.scene('IntroScene',function(attr){
+    //Background Layer
+    var bg = Crafty.e("Graphics").image("backgroundlayout.png");
+    //Background Layer
+    var logo = Crafty.e("Graphics").image("titlescreen.png");
 
-    var t = Crafty.e("2D, DOM,Text").
-        attr({ x: gameSettings.width/2 - 35, y: 50 })
-        .textColor('#AAA', 1.0)
-        .textFont({ size: '60px', family:"Arial", weight: 'bold' })
-        .text("PUTIN PUNCHOUT");
+    var gameController = Crafty.e('MenuController')
+        .assignMenuControls({
+            ID: 'gamecontrol1',
+            LeftControl: buttons.player1.l,
+            RightControl: buttons.player1.r
+        });
+
+    var gameController2 = Crafty.e('MenuController')
+        .assignMenuControls({
+            ID: 'gamecontrol2',
+            LeftControl: buttons.player2.l,
+            RightControl: buttons.player2.r
+        });
+
+    var unbind = gameController.uniqueBind('gamecontrol1.MenuButtonChange',function(e){
+       if (e === gameController.MENU_SELECTION){
+           gameController.destroy();
+           gameController2.destroy();
+           Crafty.enterScene("newTesting");
+           Crafty.audio.play('roundBell',1,0.7);
+       }
+    });
+
+    var unbind2 = gameController2.uniqueBind('gamecontrol2.MenuButtonChange',function(e){
+        if (e === gameController.MENU_SELECTION){
+            gameController.destroy();
+            gameController2.destroy();
+            Crafty.enterScene("newTesting");
+            Crafty.audio.play('roundBell',1,0.7);
+        }
+    });
+
 });
 
 Crafty.scene('newTesting',function(){
@@ -51,8 +93,8 @@ Crafty.scene('newTesting',function(){
     var player1 = Crafty.e("Player").setup({
         ID: "Player1",
         opponentID: "Player2",
-        LeftControl: 'A',
-        RightControl: 'D',
+        LeftControl: buttons.player1.l,
+        RightControl: buttons.player1.r,
         BodySpriteName: 'PutinSprite',
         GloveSpriteName: 'PutinFist',
         role: 1 //0 is attack
@@ -63,8 +105,8 @@ Crafty.scene('newTesting',function(){
     var player2 = Crafty.e("Player").setup({
         ID: "Player2",
         opponentID: "Player1",
-        LeftControl: 'J',
-        RightControl: 'L',
+        LeftControl: buttons.player2.l,
+        RightControl: buttons.player2.r,
         BodySpriteName: 'HarperSprite',
         GloveSpriteName: 'HarperFist',
         role: 0 //0 is attack
@@ -101,7 +143,7 @@ Crafty.scene('newTesting',function(){
         player2.swapRole(1000);
         SwapBackground(bg);
         //uncomment this at some point for round bells.
-        //Crafty.audio.play('roundBell',1,0.7);
+        Crafty.audio.play('roundBell',1,0.7);
 
     });
 
@@ -118,7 +160,7 @@ Crafty.scene('newTesting',function(){
                 player1.destroy();
                 player2.destroy();
                 Crafty.e('Attributes').clearAttributes();
-                Crafty.scene('winScene',e);
+                Crafty.enterScene('winScene',e);
             },2000,1);
 
 
@@ -129,14 +171,14 @@ Crafty.scene('newTesting',function(){
     Crafty.e("StaminaBar").setup({
         playerID: "Player1",
         topX: 50,
-        topY: 20,
+        topY: 5,
         colour: "#FF0000"
     });
 
     Crafty.e("StaminaBar").setup({
         playerID: "Player2",
         topX: gameSettings.width - 250,
-        topY: 20,
+        topY: 5,
         colour: "#FFFFFF"
     });
 
@@ -146,4 +188,7 @@ Crafty.scene('newTesting',function(){
         colourP2: "#FFFFFF",
         colourP1: "#FF0000"
     });
+
+    Crafty.e("Graphics").image("./gui/putin_head.png").attr({x:0, y:0});
+    Crafty.e("Graphics").image("./gui/harper_head.png").attr({x:gameSettings.width - 50, y:0});
 });

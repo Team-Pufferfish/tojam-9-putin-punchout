@@ -24,7 +24,7 @@ Crafty.c("ComboBar",{
         var topX = attr.topX;
         var topY = attr.topY;
 
-        var outer = Crafty.e("2D, DOM, Color")
+        var outer = Crafty.e("2D, DOM, Color, Image").image("./gui/combobar.png")
             .color("#666666").attr({w:drawWidth, h:drawHeight,x:attr.topX, y:attr.topY});
 
         var innerAttack = Crafty.e("2D, DOM, Color")//red
@@ -33,12 +33,13 @@ Crafty.c("ComboBar",{
         var innerDefend = Crafty.e("2D, DOM, Color")//white
             .color(attr.colourP2).attr({w:drawWidth*0.8, h:0,x:attr.topX + drawWidth * 0.1, y:attr.topY + drawHeight/2*0.6});
 
-        var comboGem = Crafty.e("2D, DOM, Color")//white
-            .color("#00EEFF").attr({alpha: 0.5,w:40, h:40,x:attr.topX, y:attr.topY + drawHeight/2 - 20});
+        var comboGem = Crafty.e("2D, DOM, Color, Image").image("./gui/combo_thing.png")
+            .color("#00EEFF").attr({alpha: 0.8,w:40, h:40,x:attr.topX, y:attr.topY + drawHeight/2 - 20});
 
-        var comboText = Crafty.e("2D, DOM, Color, Text").attr({x:attr.topX, y:attr.topY + drawHeight/2 - 20}).text('0')
-            .textColor('#000000', 1.0)
-            .textFont({ size: '32px', family:"Arial", weight: 'bold' });
+        var comboText = Crafty.e("2D, DOM, Color, Text").attr({x:attr.topX, y:attr.topY + drawHeight/2 - 20, width: 400}).text('0')
+            .textColor('#FFFFFF', 1.0)
+            .textFont({ size: '32px', family:"Arial", weight: 'bold' })
+            .css({'text-align': 'center', 'min-width':'40px'});
 
         Crafty.bind("combo.change",function(change){
                 attackerCombo = change.attackerMultiplier;
