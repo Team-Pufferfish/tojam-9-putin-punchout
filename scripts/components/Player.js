@@ -79,7 +79,9 @@ Crafty.c("Player",{
        function setupOffensiveStamina() {
 
 
-           component.createAttributeAutoIncrementor(attr.ID,"CurrentStamina",component.getAttribute(attr.ID,"StaminaRegenRate"));
+           component.createAttributeAutoIncrementor(attr.ID,"CurrentStamina",
+               component.getAttribute(attr.ID,"StaminaRegenRate"),
+                component.getAttribute(attr.ID,"MaxStamina"));
            component.runAutoIncrementorLoop(500);
 
                function triggerAction(e){
@@ -100,9 +102,8 @@ Crafty.c("Player",{
 
                        component.changeAttribute(attr.opponentID,"CurrentStamina", -(damageToDeal));
 
-                       console.log("CSTAM:",cStam);
                    } else {
-                       console.log('it goes here');
+
                        component.changeAttribute(attr.opponentID,"MaxStamina", -(e.damage));
                    }
 
