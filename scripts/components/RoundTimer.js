@@ -9,7 +9,7 @@ Crafty.c("RoundTimer", {
         this.requires('2D, DOM, Attributes,Text');
     },
 
-    setup: function (attr) {
+    loop: function (attr) {
         var component = this;
 
         component.attr({ x: gameSettings.width/2-(41), y: 8 }).text('00:00')
