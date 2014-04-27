@@ -3,7 +3,7 @@
  */
 Crafty.c("Punch",{
     init: function(){
-        this.requires("HitDetector,Zonable,Attributes");
+        this.requires("HitDetector,Zonable,Attributes,SoundEffects");
     },
     STRAIGHT: 25,
     HOOK: 100,
@@ -31,6 +31,13 @@ Crafty.c("Punch",{
                 strength = e.strength * component.getAttribute(e.defenderID,"BlockMitigator");
             }
 
+            if (hitStats.hitPercent >= .75 && hitStats.result !== "blocked"){
+
+                Crafty.audio.play('hardPunch',1,0.3);
+            } else if (hitStats.result !== "missed"){
+
+                Crafty.audio.play('softPunch',1,0.7);
+            }
 
             console.log("punch result: ",result, " damage: ",hitStats.hitPercent * strength);
 
@@ -88,6 +95,8 @@ Crafty.c("Punch",{
             Throw();
 
         function Throw(){
+
+            Crafty.audio.play('punchSwoosh',1,0.3);
 
             component.trigger("punch.start",{
                 type: punchType,
