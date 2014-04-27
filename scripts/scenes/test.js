@@ -13,7 +13,7 @@ Crafty.scene('newTesting',function(){
 
 
     //Background Layer
-    Crafty.e("Graphics").image("background_test.png");
+    Crafty.e("Graphics").image("background_day.png");
 
     //Initialize Players
     var player1 = Crafty.e("Player").setup({
@@ -24,7 +24,8 @@ Crafty.scene('newTesting',function(){
         BodySpriteName: 'PutinSprite',
         GloveSpriteName: 'PutinFist',
         role: 1 //0 is attack
-    }).setZone("Player1",0);
+    });
+        player1.setZone("Player1",0);
 
     var player2 = Crafty.e("Player").setup({
         ID: "Player2",
@@ -34,7 +35,9 @@ Crafty.scene('newTesting',function(){
         BodySpriteName: 'HarperSprite',
         GloveSpriteName: 'HarperFist',
         role: 0 //0 is attack
-    }).setZone("Player1",0);
+    });
+
+    player2.setZone("Player2",0);
 
     gameController.bind("gamecontrol.ButtonComplete",function(change) {
         player1.swapRole(1000);
@@ -46,6 +49,19 @@ Crafty.scene('newTesting',function(){
     Crafty.e("2D, DOM, Text").attr({ x: gameSettings.width/2-(41), y: 8 }).text('00:00')
         .textColor('#FFFFFF', 1.0)
         .textFont({ size: '32px', family:"Arial", weight: 'bold' });
+
+
+    Crafty.e("StaminaBar").setup({
+        playerID: "Player1",
+        topX: 50,
+        topY: 20
+    });
+
+    Crafty.e("StaminaBar").setup({
+        playerID: "Player2",
+        topX: gameSettings.width - 250,
+        topY: 20
+    });
 });
 
 Crafty.scene('test', function(){

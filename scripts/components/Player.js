@@ -29,6 +29,7 @@ Crafty.c("Player",{
            RightControl: attr.RightControl
        });
 
+
        component.role = attr.role;
        //Command Support
        function setupSprites() {
@@ -57,7 +58,7 @@ Crafty.c("Player",{
                    MaxStamina : 1000,
                    CurrentStamina: 1000,
                    TotalStamina: 1000,
-                   StaminaRegenRate: 10,
+                   StaminaRegenRate: 5,
                    PunchStrength: 50
 
                };
@@ -77,7 +78,9 @@ Crafty.c("Player",{
 
        function setupOffensiveStamina() {
 
-           if (component.role === component.ATTACK_ROLE){
+
+           component.createAttributeAutoIncrementor(attr.ID,"CurrentStamina",component.getAttribute(attr.ID,"StaminaRegenRate"));
+           component.runAutoIncrementorLoop(500);
 
                function triggerAction(e){
                    /* component.trigger("punch.end",{
@@ -108,24 +111,8 @@ Crafty.c("Player",{
                component.lefty.bind("punch.end",triggerAction);
                component.righty.bind("punch.end",triggerAction);
 
-           }
 
 
-
-           component.bind(attr.opponentID + ".attribute.changed",function(e){
-               /* component.trigger(ID + ".attribute.changed",{
-                name: attributeName,
-                oldValue: oldVal,
-                newValue: newVal
-
-                });*/
-               if (e.name === "CurrentStamina"){
-                   console.log("CurrentStaminaNew: ", e.newValue, "Old: ", e.oldValue);
-               }
-               if (e.name === "MaxStamina"){
-                   console.log("MaxStaminaNew: ", e.newValue, "Old: ", e.oldValue);
-               }
-           });
        }
 
 

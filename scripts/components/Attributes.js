@@ -15,7 +15,7 @@ Crafty.c("Attributes",{
         }
 
         if (!attributeHolder[ID][attributeName]){
-            component.trigger(ID + ".attribute.created",
+            Crafty.trigger(ID + ".attribute.created",
                 {
                     name: attributeName,
                     value: attributeValue
@@ -25,7 +25,7 @@ Crafty.c("Attributes",{
 
             var oldVal = attributeHolder[ID][attributeName];
             var newVal = attributeHolder[ID][attributeName] = attributeValue;
-            component.trigger(ID + ".attribute.changed",{
+            Crafty.trigger(ID + ".attribute.changed",{
                 name: attributeName,
                 oldValue: oldVal,
                 newValue: newVal
