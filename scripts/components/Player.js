@@ -3,7 +3,7 @@
  */
 Crafty.c("Player",{
    init: function(){
-       this.requires('LRController,Attributes,Graphics,Zonable,Defense,Punch,Combo');
+       this.requires('LRController,Attributes,Graphics,Zonable,Defense,Punch,Combo,SoundEffects');
    },
 
    ATTACK_ROLE: 0,
@@ -100,6 +100,7 @@ Crafty.c("Player",{
            }
            component.lefty.bind("punch.end",trigger);
            component.righty.bind("punch.end",trigger);
+
 
            Crafty.bind("punch.miss",function(){
                if (component.role === component.DEFEND_ROLE)
