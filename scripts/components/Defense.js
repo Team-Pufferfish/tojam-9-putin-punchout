@@ -74,8 +74,7 @@ Crafty.c("Defense",{
     },
     StunPlayer: function(playerID, time){
         var component = this;
-        console.log("stun animation start");
-        Crafty.trigger("block.release");
+         Crafty.trigger("block.release");
         Crafty.trigger("dodge.release");
         component.setZone(component.playerID,0);
         component.animate("StunAnimate", 1);
@@ -95,7 +94,6 @@ Crafty.c("Defense",{
     setDefenderCallbacks: function(){
         var component = this;
         component.bind("TweenEnd", function(props) {
-            console.log('here');
             switch (props.tweenName){
                 case "dodgeLeft":
                     Crafty.trigger("dodge.end");

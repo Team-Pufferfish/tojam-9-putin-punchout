@@ -67,7 +67,7 @@ Crafty.c("ComboBar",{
             var defenderRatio  = defenderCombo/maxCombo;//white
             innerDefend.attr({h:outer.h*0.95*defenderRatio/2});
             innerDefend.attr( {y:topY + (drawHeight - outer.h/2 - innerDefend.h)});
-            console.log(innerDefend.y);
+
 
             //Set gem location and text location
             if (attackerCombo >= defenderCombo){

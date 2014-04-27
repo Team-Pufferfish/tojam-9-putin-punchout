@@ -2,6 +2,38 @@
  * Created by myabko on 2014-04-21.
  */
 
+Crafty.scene('winScene',function(attr){
+    //Background Layer
+    var bg = Crafty.e("Graphics").image("backgroundlayout.png");
+
+
+    var t = Crafty.e("2D, DOM,Text").
+        attr({ x: gameSettings.width/2 - 35, y: 50 })
+        .textColor('#AAA', 1.0)
+        .textFont({ size: '60px', family:"Arial", weight: 'bold' });
+
+    if (attr.deadPlayer === "Player1"){
+        t.text("Harper WINS!");
+    } else {
+        t.text("Putin WINS!");
+    }
+
+    Crafty.e("Delay").delay(function(){
+        Crafty.scene("IntroScene");
+    },3000,1);
+
+
+});
+
+Crafty.scene('IntroScene',function(attr){
+
+    var t = Crafty.e("2D, DOM,Text").
+        attr({ x: gameSettings.width/2 - 35, y: 50 })
+        .textColor('#AAA', 1.0)
+        .textFont({ size: '60px', family:"Arial", weight: 'bold' })
+        .text("PUTIN PUNCHOUT");
+});
+
 Crafty.scene('newTesting',function(){
     //temp controller to show britt stuf
     var gameController = Crafty.e('LRController')
@@ -26,6 +58,7 @@ Crafty.scene('newTesting',function(){
         role: 1 //0 is attack
     });
         player1.setZone("Player1",0);
+    player1.assignAttribute("game","gameover",false);
 
     var player2 = Crafty.e("Player").setup({
         ID: "Player2",
@@ -41,10 +74,6 @@ Crafty.scene('newTesting',function(){
 
 
 
-
-    Crafty.bind("combo.change",function(e){
-        console.log(JSON.stringify(e));
-    })
 
 
     //Draw UI
@@ -65,9 +94,31 @@ Crafty.scene('newTesting',function(){
 
         player1.swapRole(1000);
         player2.swapRole(1000);
-
+        SwapBackground(bg);
         //uncomment this at some point for round bells.
         //Crafty.audio.play('roundBell',1,0.7);
+
+    });
+
+
+    Crafty.bind("gameEnd",function(e){
+        player1.input_locked = true;
+        player1.assignAttribute("game","gameover",true);
+        player2.input_locked = true;
+
+
+
+        Crafty.e('Delay')
+            .delay(function(){
+                player1.destroy();
+                player2.destroy();
+                Crafty.e('Attributes').clearAttributes();
+                Crafty.scene('winScene',e);
+            },2000,1);
+
+
+
+
 
     });
     Crafty.e("StaminaBar").setup({

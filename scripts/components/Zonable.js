@@ -23,7 +23,6 @@ Crafty.c("Zonable",{
                 oldZone = 0;
             }
 
-            console.log("oldzone:",oldZone," newzone:",zone);
             component.trigger(playerID + ".zoneChange",{
                 oldZone: oldZone,
                 newZone: zone

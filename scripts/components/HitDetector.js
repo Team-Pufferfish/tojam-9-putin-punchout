@@ -9,12 +9,10 @@ Crafty.c("HitDetector",{
 
        Crafty.bind("block.end",function(){
            isBlocking = true;
-           console.log("hit detector found a block");
        });
 
        Crafty.bind("block.release",function(){
            isBlocking = false;
-           console.log("hit detector found a end block");
        })
 
 

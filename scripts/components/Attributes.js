@@ -71,6 +71,10 @@ Crafty.c("Attributes",{
         },delay,-1);
     },
 
+    clearAttributes: function(){
+        this.autoIncrementors = [];
+        attributeHolder = {};
+    },
     createAttributeAutoIncrementor: function(ID,attributeName,incrementAttribute, maxValueAttribute){
 
 

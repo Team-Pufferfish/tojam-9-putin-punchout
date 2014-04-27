@@ -221,8 +221,29 @@ Crafty.c("Player",{
                    }
 
 
+
+
                }
+
+               if (e.name === "MaxStamina"){
+                   if (e.newValue <= 0){
+                       component.body.KillPlayer(attr.ID,1000);
+
+                           Crafty.trigger("gameEnd",{
+                               deadPlayer: attr.ID
+                          });
+
+
+
+
+
+                   }
+               }
+
            });
+
+
+
 
                component.lefty.bind("punch.end",triggerAction);
                component.righty.bind("punch.end",triggerAction);
@@ -230,6 +251,7 @@ Crafty.c("Player",{
 
 
        }
+
 
        component.bind("defender.stunned",function(){
            if (component.role === component.DEFEND_ROLE){
@@ -239,7 +261,7 @@ Crafty.c("Player",{
        });
 
        component.bind("defender.stunRelease",function(){
-           if (component.role === component.DEFEND_ROLE){
+           if (component.role === component.DEFEND_ROLE && !component.getAttribute("game","gameover")){
                component.input_locked = false;
                //component.body.GoNeutral(1, 300);
            }
@@ -286,7 +308,6 @@ Crafty.c("Player",{
        });
 
        component.body.bind("TweenEnd", function(props) {
-           console.log("bodyswapping!" + props.tweenName);
            if (props.tweenName === "bodyShift" || props.tweenName === "bodyShiftOut") {
             component.input_locked = false;
            }

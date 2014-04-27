@@ -39,8 +39,6 @@ Crafty.c("Punch",{
                 Crafty.audio.play('softPunch',1,0.7);
             }
 
-            console.log("punch result: ",result, " damage: ",hitStats.hitPercent * strength);
-
             //Substract stamina from attacker bsed on hit or miss
 
             component.trigger("punch.end",{
