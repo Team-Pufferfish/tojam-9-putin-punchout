@@ -72,6 +72,11 @@ Crafty.scene('newTesting',function(){
 
     player2.setZone("Player2",0);
 
+    var splatEffectRight = Crafty.e("Splat");
+    splatEffectRight.setUp(-1);
+    var splatEffectLeft = Crafty.e("Splat").flip("X");
+    splatEffectLeft.setUp(1);
+
 
 
 
