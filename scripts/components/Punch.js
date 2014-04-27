@@ -23,23 +23,33 @@ Crafty.c("Punch",{
         component.bind("punch.ending",function(e){
             var attackerZone = e.punchType * e.hand;
             var defenderZone = component.getZone(e.defenderID);
-            var hitPercent = component.detectHit(attackerZone,defenderZone);
-            var result = hitPercent === 0 ? component.PUNCH_MISS : component.PUNCH_HIT;
+            var hitStats = component.detectHit(attackerZone,defenderZone);
+            var result = hitStats.hitPercent === 0 ? component.PUNCH_MISS : component.PUNCH_HIT;
+            var strength = e.strength;
+            if (hitStats.result === "blocked"){
+                result = component.PUNCH_BLOCK;
+                strength = e.strength * 0.5;
+            }
 
-            console.log("punch result: ",result, " damage: ",hitPercent * e.strength);
+
+            console.log("punch result: ",result, " damage: ",hitStats.hitPercent * strength);
 
             //Substract stamina from attacker bsed on hit or miss
 
             component.trigger("punch.end",{
                 punchType: e.punchType,
                 hand: e.hand,
-                damage: hitPercent * e.strength,
+                damage: hitStats.hitPercent * strength,
                 result: result
             });
 
-            if (result === 0){
+            if (result === component.PUNCH_MISS){
                 Crafty.trigger("punch.miss");
-            } else {
+            } else if (result === component.PUNCH_BLOCK){
+                Crafty.trigger("punch.block");
+                console.log("was blocked");
+            }
+            else {
                 Crafty.trigger("punch.hit");
             }
         });

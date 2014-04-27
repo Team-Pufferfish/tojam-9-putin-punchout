@@ -106,8 +106,7 @@ Crafty.c("Player",{
 
 
            component.createAttributeAutoIncrementor(attr.ID,"CurrentStamina",
-               "StaminaRegenRate",
-                component.getAttribute(attr.ID,"MaxStamina"));
+               "StaminaRegenRate","MaxStamina");
            component.runAutoIncrementorLoop(500);
 
                function triggerAction(e){
@@ -117,7 +116,13 @@ Crafty.c("Player",{
                     damage: hitPercent * e.strength,
                     result: result
                     });*/
-                   var cStam = component.getAttribute(attr.opponentID,"CurrentStamina");
+
+                   var attrToAdjust = "CurrentStamina";
+                   if (e.result === component.PUNCH_BLOCK){
+                       attrToAdjust = "MaxStamina";
+                   }
+
+                   var cStam = component.getAttribute(attr.opponentID,attrToAdjust);
                    if (cStam > 0){
 
                        var damageToDeal = e.damage;
@@ -126,7 +131,11 @@ Crafty.c("Player",{
                            damageToDeal = cStam;
                        }
 
-                       component.changeAttribute(attr.opponentID,"CurrentStamina", -(damageToDeal));
+                       component.changeAttribute(attr.opponentID,attrToAdjust, -(damageToDeal));
+                       if (component.getAttribute(attr.opponentID,"CurrentStamina") >
+                           component.getAttribute(attr.opponentID,"MaxStamina")){
+                           component.assignAttribute(attr.opponentID,"CurrentStamina",component.getAttribute(attr.opponentID,"MaxStamina"));
+                       }
 
                    } else {
 

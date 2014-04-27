@@ -60,8 +60,8 @@ Crafty.c("Attributes",{
                     var currentValue = component.getAttribute(inc.ID,inc.attributeName);
                     var finalValue = currentValue + component.getAttribute(inc.ID,inc.incrementValue);
 
-                    if (finalValue > inc.maxValue){
-                        finalValue = inc.maxValue;
+                    if (finalValue > component.getAttribute(inc.ID,inc.maxValue)){
+                        finalValue = component.getAttribute(inc.ID,inc.maxValue);
                     }
                     component.assignAttribute(inc.ID,inc.attributeName,finalValue);
                 }
@@ -71,14 +71,14 @@ Crafty.c("Attributes",{
         },delay,-1);
     },
 
-    createAttributeAutoIncrementor: function(ID,attributeName,incrementAttribute, maxValue){
+    createAttributeAutoIncrementor: function(ID,attributeName,incrementAttribute, maxValueAttribute){
 
 
         this.autoIncrementors.push({
             ID: ID,
             attributeName: attributeName,
             incrementValue: incrementAttribute,
-            maxValue: maxValue,
+            maxValue: maxValueAttribute,
             pause:false
         });
 
