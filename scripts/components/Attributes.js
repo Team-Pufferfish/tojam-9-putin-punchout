@@ -60,7 +60,7 @@ Crafty.c("Attributes",{
                     var currentValue = component.getAttribute(inc.ID,inc.attributeName);
                     var finalValue = currentValue + component.getAttribute(inc.ID,inc.incrementValue);
 
-                    if (finalValue > component.getAttribute(inc.ID,inc.maxValue)){
+                    if (inc.maxValue && finalValue > component.getAttribute(inc.ID,inc.maxValue)){
                         finalValue = component.getAttribute(inc.ID,inc.maxValue);
                     }
                     component.assignAttribute(inc.ID,inc.attributeName,finalValue);
