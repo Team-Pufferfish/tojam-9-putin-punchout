@@ -6,7 +6,8 @@ Crafty.c("SoundEffects",{
         Crafty.audio.add({
             softPunch: ["sounds/softPunch.wav"],
             hardPunch: ["sounds/hardPunch.wav"],
-            punchSwoosh: ["sounds/punchSwoosh.wav"]
+            punchSwoosh: ["sounds/punchSwoosh.wav"],
+            dodgeSwoosh: ["sounds/dodgeSwoosh.wav"]
         });
     }
 });

@@ -1,12 +1,13 @@
 Crafty.c("Defense",{
     init: function(){
-        this.requires('2D, Tween, Zonable, Punch');
+        this.requires('2D, Tween, Zonable, Punch,SoundsEffect');
     },
     Dodge: function(playerID, direction,time) {
         var component = this;
         //Apply Cost for Dodging
         component.pauseAnimation();
         component.reelPosition(0);
+        Crafty.audio.play('dodgeSwoosh',1,0.3);
         if (direction === "left"){
             component.setZone(playerID,-50);
             component.tween({tweenName:"dodgeLeft",rotation:0,x: gameSettings.width/2 - 500/2-150, y:80}, time);
