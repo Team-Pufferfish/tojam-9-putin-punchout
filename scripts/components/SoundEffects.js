@@ -8,7 +8,9 @@ Crafty.c("SoundEffects",{
             hardPunch: ["sounds/hardPunch.wav"],
             punchSwoosh: ["sounds/punchSwoosh.wav"],
             dodgeSwoosh: ["sounds/dodgeSwoosh.wav"],
-            roundBell: ["sounds/roundBell.wav"]
+            roundBell: ["sounds/roundBell.wav"],
+            intro: ["sounds/intro.wav"],
+            cheer: ["sounds/cheer.wav"]
         });
     }
 });

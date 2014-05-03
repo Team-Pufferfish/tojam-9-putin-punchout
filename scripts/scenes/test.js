@@ -4,19 +4,20 @@
 
 var buttons = {
     player1: {
-        l: 'X',
-        r: 'C'
+        l: 'A',
+        r: 'D'
     },
     player2: {
-        l: 'I',
-        r: 'K'
+        l: 'J',
+        r: 'L'
     }
 }
 
 Crafty.scene('winScene',function(attr){
     //Background Layer
     var bg = Crafty.e("Graphics").image("backgroundlayout.png");
-
+    Crafty.e("SoundEffects");
+    Crafty.audio.play('cheer',1,1);
 
     var t = Crafty.e("2D, DOM,Text").
         attr({ x: gameSettings.width/2 - 35, y: 50 })
@@ -31,7 +32,7 @@ Crafty.scene('winScene',function(attr){
 
     Crafty.e("Delay").delay(function(){
         location.reload();
-    },3000,1);
+    },5000,1);
 
 
 });
@@ -41,7 +42,8 @@ Crafty.scene('IntroScene',function(attr){
     var bg = Crafty.e("Graphics").image("backgroundlayout.png");
     //Background Layer
     var logo = Crafty.e("Graphics").image("titlescreen.png");
-
+Crafty.e("SoundEffects");
+    Crafty.audio.play('intro',1,1);
     var gameController = Crafty.e('MenuController')
         .assignMenuControls({
             ID: 'gamecontrol1',
@@ -61,6 +63,7 @@ Crafty.scene('IntroScene',function(attr){
            gameController.destroy();
            gameController2.destroy();
            Crafty.enterScene("newTesting");
+
            Crafty.audio.play('roundBell',1,0.7);
        }
     });

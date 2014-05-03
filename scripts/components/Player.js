@@ -271,7 +271,7 @@ Crafty.c("Player",{
        component.input_locked = false;
 
        component.bind(attr.ID+".ButtonComplete",function(change) {
-           if (component.role === component.ATTACK_ROLE && !component.input_locked && (component.getAttribute(attr.ID,"CurrentStamina") > 100 || component.getAttribute(attr.ID,"MaxStamina") < 100)) {
+           if (component.role === component.ATTACK_ROLE && !component.input_locked && (component.getAttribute(attr.ID,"CurrentStamina") > 100 || component.getAttribute(attr.ID,"MaxStamina") < 200)) {
                if (change.button === component.LEFT_BUTTON && component.lefty.punch_out === 0 && component.righty.punch_out != 2) {
                    if (change.timeHeld <= 250) {
                        component.lefty.ThrowPunch(attr.ID, attr.opponentID, component.lefty.STRAIGHT, component.lefty.LEFT_PUNCH, 0, component.getAttribute(attr.ID,"PunchStrength"));
